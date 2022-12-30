@@ -1,0 +1,99 @@
+<template>
+  <transition name="el-fade-in-linear">
+    <div v-show="isTopShow" class="settings">
+    <!--  切换主题-->
+      <div class="change_themes">
+        <img @click="change_themes" :src="getImageUrl" id="change_themes-icon" alt="">
+      </div>
+    <!--  回到顶部-->
+      <div  class="backUp">
+        <img @click="tobackUp" src="@/assets/img/icon/backup.png" id="backup-icon" alt="">
+      </div>
+    </div>
+  </transition>
+</template>
+
+<script>
+export default {
+  name: `setting`,
+  data(){
+    return{
+      scrollTop:0,
+      isTopShow:false, // 是否显示回到顶部图标
+      scrollTopSpeed:40, // 回到顶部的速度
+      themes_img:'day', //
+    }
+  },
+  mounted(){
+    window.addEventListener("scroll", this.handleScroll)
+  },
+  destroyed () {
+    window.removeEventListener('scroll', this.handleScroll);
+  },
+  methods:{
+    handleScroll() {
+      this.scrollTop = Math.floor(document.documentElement.scrollTop || document.body.scrollTop);
+    },
+    tobackUp(){
+      let timer = setInterval(()=> {
+        document.documentElement.scrollTop = this.scrollTop;
+        this.scrollTop = this.scrollTop -this.scrollTopSpeed;
+        if(this.scrollTop<=0){
+          document.documentElement.scrollTop = 0;
+          clearInterval(timer);
+
+        }
+      }, 1);
+    },
+    change_themes(){
+      if(this.themes_img === 'day'){
+        this.themes_img = 'night';
+        window.document.documentElement.setAttribute("data-theme", this.themes_img);
+      }else {
+        this.themes_img = 'day'
+        window.document.documentElement.setAttribute("data-theme", this.themes_img);
+      }
+    }
+  },
+  computed: {
+
+    getImageUrl () {
+      return require('@/assets/img/icon/'+this.themes_img+'.png');
+    }
+  },
+
+  watch:{
+    scrollTop:{
+      immediate:true,
+      handler(newvalue){
+        this.isTopShow = newvalue > 150;
+      }
+    }
+  }
+}
+</script>
+
+<style scoped lang="scss">
+@import "@/assets/scss/_handle.scss";
+.settings {
+  width: 40px;
+  height: 80px ;
+  background-color: #DD1C1C;
+  right: 0;
+  bottom: 200px;
+  position: fixed;
+  float: right;
+}
+.backUp {
+  img {
+    width: 40px;
+    height: auto;
+  }
+}
+.change_themes {
+  img {
+    width: 40px;
+    height: auto;
+  }
+}
+</style>

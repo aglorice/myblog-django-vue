@@ -1,28 +1,216 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <vue-element-loading :active="!isRenderStart"
+                         id="loading"
+                         spinner="line-scale"
+                         color="#84DDE0FF"
+                         size="60"
+                         text="@DARLING in the FRANXX"
+                         background-color="rgba(95, 158, 160, 1)"
+                         is-full-screen />
+    <div v-if="isRenderStart">
+      <!--    导航栏-->
+      <navigation></navigation>
+      <transition :name="transitionName" mode="out-in">
+        <keep-alive include="index,article,categorize,pag">
+          <router-view :articles="completeArticles"></router-view>
+        </keep-alive>
+      </transition>
+    </div>
+<!--    底部设置-->
+    <setting></setting>
+<!--    底部栏-->
+    <pagebottom></pagebottom>
+<!--    音乐播放组件-->
+    <aplayer></aplayer>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import VueElementLoading from "vue-element-loading";
+import navigation from "@/components/navigation";
+import setting from "@/components/setting"; // 底部右侧设置
+import pagebottom from "@/components/pagebottom"; // 底部栏
+import aplayer from "@/components/aplayer";
+import {getArticle} from "@/api/http";
+import variable from "@/assets/js/variable";
 
 export default {
   name: 'App',
+  data(){
+    return{
+      screenWidth: 749, // 屏幕宽度
+      completeArticles:[], // 完整的文章
+      isRenderStart:false,  // 是否开始渲染子组件
+      transitionName:'slide-left'
+    }
+  },
   components: {
-    HelloWorld
-  }
+    navigation, // 导航栏
+    setting, // 设置
+    pagebottom , // 底部栏
+    aplayer, // 音乐
+    VueElementLoading,
+  },
+  mounted () {
+    // 初始化主题
+    window.document.documentElement.setAttribute("data-theme", 'day');
+    // 获取文章信息
+    this.getarticle()
+
+  },
+  created() {
+    // 创建看板娘
+      window.L2Dwidget.init({
+        pluginRootPath: 'live2dw/',
+        pluginJsPath: 'lib/',
+        pluginModelPath: 'live2d-widget-model-haru_1/assets/',
+        tagMode: false,
+        debug: false,
+        model: {jsonPath: '/live2dw/live2d-widget-model-haru_1/assets/haru01.model.json'},
+        display: {position: 'right', width: 150, height: 300},
+        mobile: {show: true},
+        log: false
+      })
+
+  },
+  beforeUpdate() {
+  },
+  methods:{
+    // 获取文章的接口
+    getarticle(){
+      getArticle(null).then((res) => {
+        if (res.code === 200) {
+          this.$message({
+            message: '数据获取成功!',
+            type: 'success',
+            duration: 1500
+          });
+          let data = res['context']
+          let page_count = res['count']
+          let completeArticle = []
+          let completeArticleAll = {}
+          for (let i = 1; i <= page_count; i++) {
+            for (let item in data[i]) {
+              completeArticle.push({
+                id: data[i][item]['id'],
+                title: data[i][item]['title'],
+                datetime: data[i][item]['created_time'],
+                category: data[i][item]['categorize'],
+                Pageview: data[i][item]['page_view'],
+                content: data[i][item]['describe'],
+                imgsrc: variable.base_url_img + data[i][item]['head_img']
+              })
+            }
+            completeArticleAll[i] = completeArticle
+            completeArticle = []
+          }
+          this.completeArticles = completeArticleAll
+          // 将信息提交到vuex
+          this.$store.dispatch('putarticle', completeArticleAll)
+          // 关闭loading
+          this.isRenderStart = true
+
+
+        } else {
+          this.$message({
+            type: 'info',
+            message: '数据获取失败',
+            duration: 1500
+          });
+        }
+      }).catch((err) => {
+        console.log(err)
+      })
+
+    }
+}
+
 }
 </script>
 
 <style>
+* {
+  padding: 0;
+  margin: 0;
+  font-size: 16px;
+  cursor: url('@/assets/img/default.cur'),auto;
+}
+/*
+  解决底部出现滚动条
+*/
+html {
+  overflow-y: scroll;
+}
+
+:root {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+:root body {
+  position: absolute;
+}
+
+body {
+  width: 100vw;
+  overflow: hidden;
+}
+
+
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  width: 100vw;
+}
+/*
+  优化侧边滚动条
+*/
+::-webkit-scrollbar
+{
+  width: 6px;
+  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+  background-color: #999;
+}
+
+/*
+  媒体查询，优化页面字体显示
+*/
+@media (max-width: 750px){
+  * {
+    font-size: 12px;
+  }
+  #live2d-widget {
+    visibility: hidden;
+  }
+  #navigation_meum {
+    visibility: unset;
+  }
+  #navigation_body {
+    visibility: hidden;
+  }
+}
+
+/*
+  页面进入的动画
+*/
+.slide-left-enter {
+  opacity: 0;
+  -webkit-transform: translate(0px, 30px);
+  transform: translate(0px, 30px);
+}
+.slide-left-enter-active{
+  transition: all .5s ease;
+}
+.slide-left-leave-to{
+  opacity: 0;
+  -webkit-transform: translate(0px, -30px);
+  transform: translate(0px, -30px);
+}
+.slide-left-leave-active {
+  transition: all .5s ease;
 }
 </style>

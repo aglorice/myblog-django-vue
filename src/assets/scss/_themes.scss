@@ -1,0 +1,27 @@
+$themes: (
+        day: (
+          //字体
+                font_color1: rgba(0, 0, 0, 0.81),
+          //背景
+                background_color1: whitesmoke,
+          // 背景渐变
+                background_gradient1:#F8FBFD ,
+          //边框
+                border_color1: #e8ebf0,
+          //边框阴影
+                box_shadow_color1: rgba(127, 131, 168, 0.2)
+        ),
+        night: (
+          //字体
+                font_color1: #fff,
+          //背景
+                background_color1: rgba(40, 40, 40, 0.81),
+          //背景渐变
+                background_gradient1:#DD1C1C,
+          //边框
+                border_color1: #34383c,
+          // 阴影
+                box_shadow_color1: rgba(0, 0, 0, 0.4)
+        ),
+);
+
