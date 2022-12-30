@@ -27,7 +27,7 @@
           <div class="container-body-articles">
             <div class="container-body-article" v-for="(value,index) in articles[1]" :key="index">
               <div class="container-body-article-cover">
-                <img :src="value.imgsrc" alt="">
+                <img   :src="value.imgsrc" alt="">
               </div>
 <!--              文章简介-->
               <div class="container-body-article-body">
@@ -69,6 +69,7 @@
           <div class="container-body-cards">
             <myinfo></myinfo>
             <mypublic></mypublic>
+            <pag></pag>
           </div>
         </div>
       </div> <!--row结尾-->
@@ -80,7 +81,7 @@
 <script>
 import myinfo from "@/components/rightCard/myInfo";
 import mypublic from "@/components/rightCard/mypublic";
-
+import pag from "@/components/rightCard/pag";
 export default {
   name: `index`,
   data(){
@@ -93,6 +94,7 @@ export default {
   components:{
     myinfo,
     mypublic,
+    pag
   },
   computed:{
 
@@ -114,7 +116,7 @@ export default {
           clearInterval(timer); // 清除定时器
         }
       }, 1);
-    }
+    },
   }
 }
 </script>

@@ -86,6 +86,9 @@ export default {
             type: 'success',
             duration: 1500
           });
+          let articleSum = 0;
+          let article = {};
+
           let data = res['context']
           let page_count = res['count']
           let completeArticle = []
@@ -103,11 +106,19 @@ export default {
               })
             }
             completeArticleAll[i] = completeArticle
+            // 计算文章总数
+            articleSum = articleSum+completeArticleAll[i].length
+
             completeArticle = []
           }
+
           this.completeArticles = completeArticleAll
           // 将信息提交到vuex
           this.$store.dispatch('putarticle', completeArticleAll)
+          article = {
+            count:articleSum
+          }
+          this.$store.dispatch('putarticleinfo',article)
           // 关闭loading
           this.isRenderStart = true
 

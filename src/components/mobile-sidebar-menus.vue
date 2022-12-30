@@ -1,23 +1,23 @@
 <template>
 <div id="mobile-sidebar-menus" class="mobile-sidebar-menus">
-  <ul>
-    <li>
-      <router-link :to="`/index`"><img src="@/assets/img/icon/home.png" alt="">首页</router-link>
+  <ul id="menu_item_my">
+    <li @click="changeMenu">
+      <router-link  :to="`/index`"><img src="@/assets/img/icon/home.png" alt="">首页</router-link>
     </li>
-    <li>
+    <li  @click="changeMenu">
       <router-link :to="`/article`"><img src="@/assets/img/icon/article.png" alt="">文章</router-link>
     </li>
-    <li>
-      <router-link :to="`/categorize`"><img src="@/assets/img/icon/category.png" alt="">分类</router-link>
+    <li @click="changeMenu">
+      <router-link  :to="`/categorize`"><img src="@/assets/img/icon/category.png" alt="">分类</router-link>
     </li>
-    <li>
-      <router-link :to="`/pag`"><img src="@/assets/img/icon/pag.png" alt="">标签</router-link>
+    <li @click="changeMenu">
+      <router-link  :to="`/pag`"><img src="@/assets/img/icon/pag.png" alt="">标签</router-link>
     </li>
-    <li>
-      <router-link :to="`/friend`"><img src="@/assets/img/icon/friend.png" alt="">友人帐</router-link>
+    <li @click="changeMenu">
+      <router-link  :to="`/friend`"><img src="@/assets/img/icon/friend.png" alt="">友人帐</router-link>
     </li>
-    <li>
-      <router-link :to="`/about`"><img src="@/assets/img/icon/about.png" alt="">关于</router-link>
+    <li @click="changeMenu">
+      <router-link  :to="`/about`"><img src="@/assets/img/icon/about.png" alt="">关于</router-link>
     </li>
   </ul>
 </div>
@@ -28,7 +28,7 @@ export default {
   name: `mobile-sidebar-menus`,
   data(){
     return{
-
+      menu_status:false
     }
   },
   components:{
@@ -44,14 +44,20 @@ export default {
     clickOutSide(e){
       let mobile_sidebar_menus = document.getElementById("mobile-sidebar-menus");
       // 判断鼠标点击到触发按钮和弹出框外的区域
-      if (this.meum_status && !mobile_sidebar_menus.contains(e.target)) {
+      if (this.meum_status && !mobile_sidebar_menus.contains(e.target) || this.menu_status) {
         document.getElementById('mobile-sidebar-menus').style.right = '-50vw';
         // 考虑到侧边栏的动画
         setTimeout(()=>{
           this.$emit("menu_info", 0); // 通知父组件
 
         }, 1000 )
+        this.menu_status = false
       }
+    },
+
+    // 点击路由改变导航栏的状态
+    changeMenu(){
+      this.menu_status = true;
     }
   },
 }

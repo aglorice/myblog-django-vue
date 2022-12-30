@@ -43,17 +43,43 @@
 </template>
 
 <script>
+import {getArticleCount} from "@/api/http";
+
 export default {
   name: `myInfo`,
   data(){
     return{
       mySign:'春暖花开，面朝大海',
       article:{
-        count:12,
-        categorize:12,
-        pag:123
+        count:5,
+        categorize:2,
+        pag:1
       }
     }
+  },
+  methods:{
+    getarticlecount(){
+      getArticleCount(null).then((res) => {
+        if (res.code === 200) {
+          let data = res['context']
+          this.article = data
+          this.$store.dispatch('putarticleinfo', data)
+          // 将信息提交到vuex
+        } else {
+          this.$message({
+            type: 'info',
+            message: '数据获取失败',
+            duration: 1500
+          });
+        }
+      }).catch((err) => {
+        console.log(err)
+      })
+    }
+
+  },
+  mounted() {
+    this.getarticlecount()
   }
 }
 </script>

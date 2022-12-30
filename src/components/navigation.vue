@@ -108,6 +108,7 @@ export default {
 }
 
 
+
 .navigation{
   height: 60px;
   width: 100%;
@@ -134,13 +135,24 @@ export default {
         height: 1.3em;
         font-size: 1.1em;
         @include font_color("font_color1");
+        text-decoration: none;
         img {
           width: 0.8em;
           height: 0.8em;
           color: #66797c;
           margin-right: 5px;
+
+        }
+        &:hover {
+          color: skyblue;
+          transition: 0.8s;
+          transform: scale(1.1); /*transform:变形属性，scale：缩放1.1倍 */
+        }
+        &:active {
+          color: wheat;
         }
       }
+
     }
   }
 }

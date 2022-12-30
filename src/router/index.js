@@ -6,7 +6,7 @@ import VueRouter from "vue-router";
 const Remind = ()=> import ("@/views/about"); // 关于
 const Categorize = ()=> import("@/views/category");
 const Pag = ()=> import("@/views/pag");
-const Article = ()=> import("@/views/article");
+const Article = ()=> import("@/views/Article");
 const Home = ()=> import("@/views/index");
 const detailArticle = ()=> import("@/views/detailarticle")
 const dateTime = ()=> import("@/views/datetime")
@@ -35,14 +35,14 @@ const routes = [
         },
     },
     {
-        path: '/article/type/:id',
+        path: '/article/type/id',
         component:Article,
         meta:{
             title:'文章'
         },
     },
     {
-        path:'/article/details/:id',
+        path:'/article/details/id',
         component:detailArticle,
         props:true,
         meta: {
