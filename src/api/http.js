@@ -33,10 +33,10 @@ export async function getCategorize(params){
 // 获取详细标签信息
 export async function getPag(params){
     return await request({
-        url:'/api_pag/pag/',
-        method :'get',
-        params:params,
-    })
+        url: '/api_pag/pag/',
+        method: 'get',
+        params: params,
+    });
 }
 
 // 获取详细标签数目信息
@@ -97,6 +97,15 @@ export async function getQqimg(params){
 export async function getMusic(params){
     return await request({
         url:'/api_music/getmusic/',
+        method :'get',
+        params:params,
+    })
+}
+
+// 获取crsf
+export async function getToke(params){
+    return await request({
+        url:'/api/getcsrftoken/',
         method :'get',
         params:params,
     })
