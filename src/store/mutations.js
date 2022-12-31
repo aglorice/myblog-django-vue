@@ -17,11 +17,11 @@ const mutations = {
     },
      // 浏览成功后，vuex中的浏览量加一，减少请求压力
     modifyPageView(state,value){
-        const pageCount  = 0 | state.article.count/10+1
+        const pageCount  = 0 | state.completeArticle.count/10+1
         for (let i =1;i<=pageCount;i++){
-            for(let j=0;j<state.articles[i].length;j++){
-                if(state.articles[i][j]['id'] ==value){
-                    state.articles[i][j]['Pageview'] +=1
+            for(let j=0;j<state.completeArticle[i].length;j++){
+                if(state.completeArticle[i][j]['id'] ==value){
+                    state.completeArticle[i][j]['Pageview'] +=1
                 }
             }
         }

@@ -1,12 +1,20 @@
 <template>
-  <div class="container_head">
-    <h1>标签</h1>
+  <div>
+    <div class="container_head">
+      <h1>标签</h1>
+    </div>
+    <pagcloud></pagcloud>
   </div>
+
 </template>
 
 <script>
+import pagcloud from "@/components/pagcloud";
 export default {
-  name: `pag`
+  name: `pag`,
+  components:{
+    pagcloud
+  }
 }
 </script>
 
@@ -14,6 +22,7 @@ export default {
 .container_head {
   width: 100vw;
   height: 60vh;
+  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;

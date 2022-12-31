@@ -1,12 +1,20 @@
 <template>
-  <div class="container_head">
-    <h1>分类</h1>
+  <div>
+    <div class="container_head">
+      <h1>分类</h1>
+    </div>
+    <categorycloud></categorycloud>
   </div>
+
 </template>
 
 <script>
+import categorycloud from "@/components/categorycloud";
 export default {
-  name: `category`
+  name: `category`,
+  components:{
+    categorycloud
+  }
 }
 </script>
 
@@ -32,4 +40,8 @@ h1 {
 }
 
 }
+.container_head {
+  margin-bottom: 20px;
+}
+
 </style>

@@ -12,6 +12,7 @@ export default {
 
 <style scoped lang="scss">
 .page_bottom {
+  margin-top: 20px;
   width: 100vw;
   height: 100px;
   background-color: #DD1C1C;

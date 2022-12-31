@@ -42,7 +42,7 @@ const routes = [
         },
     },
     {
-        path:'/article/details/id',
+        path:'/article/details/:id',
         component:detailArticle,
         props:true,
         meta: {

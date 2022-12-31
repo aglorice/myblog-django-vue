@@ -27,13 +27,13 @@
           <div class="container-body-articles">
             <div class="container-body-article" v-for="(value,index) in articles[1]" :key="index">
               <div class="container-body-article-cover">
-                <img   :src="value.imgsrc" alt="">
+                <router-link  :to="`/article/details/${value.id}`"><img   :src="value.imgsrc" alt=""></router-link>
               </div>
 <!--              文章简介-->
               <div class="container-body-article-body">
                 <div class="container-body-article-body-div">
                   <div class="article-body-head">
-                    <h2>{{value.title}}</h2>
+                    <router-link class="container-body-article-router-link" :to="`/article/details/${value.id}`"><h2>{{value.title}}</h2></router-link>
                   </div>
                   <div class="container-body-article-body-div-mid">
                     <div class="article-body-icon">
@@ -70,6 +70,7 @@
             <myinfo></myinfo>
             <mypublic></mypublic>
             <pag></pag>
+            <category></category>
           </div>
         </div>
       </div> <!--row结尾-->
@@ -82,6 +83,7 @@
 import myinfo from "@/components/rightCard/myInfo";
 import mypublic from "@/components/rightCard/mypublic";
 import pag from "@/components/rightCard/pag";
+import category from "@/components/rightCard/category";
 export default {
   name: `index`,
   data(){
@@ -94,7 +96,8 @@ export default {
   components:{
     myinfo,
     mypublic,
-    pag
+    pag,
+    category
   },
   computed:{
 
@@ -326,5 +329,9 @@ export default {
     -webkit-line-clamp:1; //想显示多少行
     font-size: 1.5em;
   }
+}
+.container-body-article-router-link {
+  text-decoration: none;
+  @include font_color("font_color1");
 }
 </style>

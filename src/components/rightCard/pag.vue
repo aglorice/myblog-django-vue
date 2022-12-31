@@ -46,9 +46,8 @@ export default {
     },
     // 随机生成标签颜色
     RandomColor() {
-      const types = ['success','info','warning','danger']
-      let type = Math.floor(Math.random() * 3);
-      console.log(types[type])
+      const types = ['','success','info','warning','danger']
+      let type = Math.floor(Math.random() * 5);
       return types[type];
     }
   },

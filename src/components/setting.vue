@@ -83,6 +83,7 @@ export default {
   bottom: 200px;
   position: fixed;
   float: right;
+  z-index: 99;
 }
 .backUp {
   img {

@@ -8,10 +8,14 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@kangc/v-md-editor": "^1.7.11",
     "aplayer": "^1.10.1",
     "bootstrap-vue": "^2.23.1",
     "core-js": "^3.8.3",
+    "echarts": "^5.4.1",
+    "echarts-wordcloud": "^2.1.0",
     "element-ui": "^2.15.12",
+    "highlight.js": "^11.7.0",
     "hls.js": "^1.2.9",
     "node-sass": "^8.0.0",
     "sass-loader": "^13.2.0",
