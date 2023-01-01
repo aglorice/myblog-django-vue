@@ -206,7 +206,7 @@ export default {
         console.log(res)
         if (res.code === 200) {
           let data = res['csrf_token']
-          sessionStorage.setItem("csrf_token", data)
+          localStorage.setItem("csrf_token", data)
         } else {
           this.$message({
             type: 'info',
