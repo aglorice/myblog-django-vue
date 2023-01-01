@@ -34,7 +34,7 @@
     <v-md-preview class="preview-themes"
                   v-if="!loading"
                   :text="articles.article"
-                  :include-level="[3, 4]"
+                  v-highlight
                   @copy-code-success="handleCopyCodeSuccess">
     </v-md-preview>
   </div>

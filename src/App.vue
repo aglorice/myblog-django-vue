@@ -32,7 +32,7 @@ import navigation from "@/components/navigation";
 import setting from "@/components/setting"; // 底部右侧设置
 import pagebottom from "@/components/pagebottom"; // 底部栏
 import aplayer from "@/components/aplayer";
-import {getArticle, getToke} from "@/api/http";
+import {getArticle} from "@/api/http";
 import variable from "@/assets/js/variable";
 
 export default {
@@ -57,7 +57,6 @@ export default {
     window.document.documentElement.setAttribute("data-theme", 'day');
     // 获取文章信息
     this.getarticle()
-    this.getcrsf()
   },
   created() {
     // 创建看板娘
@@ -137,24 +136,7 @@ export default {
     },
 
 
-    // 获取token
-    getcrsf(){
-      getToke(null).then((res) => {
-        if (res.code === 200) {
-          let data = res['csrf_token']
-          console.log(data)
-          // 将信息提交到vuex
-        } else {
-          this.$message({
-            type: 'info',
-            message: '数据获取失败',
-            duration: 1500
-          });
-        }
-      }).catch((err) => {
-        console.log(err)
-      })
-    }
+
 }
 
 }

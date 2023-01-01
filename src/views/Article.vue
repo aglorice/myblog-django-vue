@@ -284,7 +284,6 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  @include background_color("background_color1");
 }
 .container-body {
   width: 100vw;
@@ -292,6 +291,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  @include background_color("background_color1");
 }
 .container-body-article-router-link {
   text-decoration: none;

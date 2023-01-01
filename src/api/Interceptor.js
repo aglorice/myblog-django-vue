@@ -1,28 +1,22 @@
 import axios from "axios";//原生的axios
 import variable from "@/assets/js/variable";
 //用来拦截用的
-axios.defaults.headers.post["Content-Type"] = "application/json;charset=utf-8";
+
 //创建一个单例
 
 const http=  axios.create({
-    baseURL:variable.base_url,
-    // headers:{"Content-Type":"application/json;charset=utf-8"},
+    baseURL:variable.proxy,
+    headers:{"Content-Type":"application/json;charset=utf-8"},
+    withCredentials:true  //  #允许跨域携带cookie信息，必须加上
 })
 
 //拦截器  -请求拦截
-// http.interceptors.request.use(config=>{
-//     //部分接口需要token
-//     let token=localStorage.getItem('token');
-//     if(token){
-//         config.headers.token=token;
-//         // config.headers ={
-//         // 'token':token
-//         // }
-//     }
-//     return config;
-// },err=>{
-//     return Promise.reject(err)
-// })
+http.interceptors.request.use(config=>{
+    config.headers.post['X-CSRFToken'] = sessionStorage.getItem('csrf_token')
+    return config;
+},err=>{
+    return Promise.reject(err)
+})
 
 //拦截器  -响应拦截
 http.interceptors.response.use(res=>{

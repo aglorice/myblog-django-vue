@@ -10,6 +10,7 @@
   "dependencies": {
     "@kangc/v-md-editor": "^1.7.11",
     "aplayer": "^1.10.1",
+    "axios": "^1.2.2",
     "bootstrap-vue": "^2.23.1",
     "core-js": "^3.8.3",
     "echarts": "^5.4.1",

@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 
 
 
+const NotFoundComponent = ()=> import ("@/components/NotFoundComponent"); // 关于
 const Remind = ()=> import ("@/views/about"); // 关于
 const Categorize = ()=> import("@/views/category");
 const Pag = ()=> import("@/views/pag");
@@ -15,6 +16,14 @@ const friend = ()=> import("@/views/friend")
 Vue.use(VueRouter);
 
 const routes = [
+    {
+        path:'*',
+        component:NotFoundComponent,
+        meta:{
+            title:'404'
+        }
+
+    },
     {
         path:'',
         redirect:'/index',
@@ -89,6 +98,7 @@ const routes = [
 
 
 const router =  new VueRouter({
+    mode: 'history',
     routes,
 
 })

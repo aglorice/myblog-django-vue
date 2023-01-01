@@ -14,7 +14,7 @@ import 'element-ui/lib/theme-chalk/index.css';
 // markdown 预览组件
 import VMdPreview from '@kangc/v-md-editor/lib/preview';
 import '@kangc/v-md-editor/lib/style/preview.css';
-import githubTheme from '@kangc/v-md-editor/lib/theme/github.js';
+import githubTheme from '@kangc/v-md-editor/lib/theme/github';
 import '@kangc/v-md-editor/lib/theme/style/github.css';
 import createCopyCodePlugin from '@kangc/v-md-editor/lib/plugins/copy-code/index';
 import '@kangc/v-md-editor/lib/plugins/copy-code/copy-code.css';
@@ -22,7 +22,9 @@ import createLineNumbertPlugin from '@kangc/v-md-editor/lib/plugins/line-number/
 import createTodoListPlugin from '@kangc/v-md-editor/lib/plugins/todo-list/index';
 import '@kangc/v-md-editor/lib/plugins/todo-list/todo-list.css';
 // highlightjs
+import 'highlight.js/styles/atom-one-dark.css'
 import hljs from 'highlight.js';
+
 //echarts
 import { LegendComponent } from 'echarts/components';
 import * as echarts from "echarts";
