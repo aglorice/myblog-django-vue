@@ -33,7 +33,7 @@
               type="text"
               placeholder="请输入你的网站的名称"
               v-model="blog.blogname"
-              maxlength="10"
+              maxlength="11"
           >
           </el-input>
 
@@ -42,7 +42,7 @@
               type="text"
               placeholder="请输入你的网站的链接"
               v-model="blog.blogsite"
-              maxlength="50"
+              maxlength="51"
           >
           </el-input>
 
@@ -51,7 +51,7 @@
               type="text"
               placeholder="请输入你的网站的图标"
               v-model="blog.blogicon"
-              maxlength="100"
+              maxlength="101"
           >
           </el-input>
 
@@ -60,7 +60,7 @@
               type="email"
               placeholder="请输入你的邮箱"
               v-model="blog.blogemail"
-              maxlength="20"
+              maxlength="21"
               :validate-event="true"
           >
           </el-input>
@@ -71,7 +71,7 @@
               :rows="2"
               placeholder="请输入你的网站的简介"
               v-model="blog.bloginfo"
-              maxlength="50"
+              maxlength="51"
           >
           </el-input>
 
@@ -79,7 +79,7 @@
         <div class="submit">
           <el-button
               @click="submitInfo"
-              :loading="false"
+              :loading="loading"
               size="small"
               round
           >提交</el-button>
@@ -112,7 +112,8 @@ export default {
         bloginfo:'',
         blogemail:''
       },
-      friends:[]
+      friends:[],
+      loading:false,
     }
   },
   mounted() {
@@ -125,7 +126,6 @@ export default {
       getFriend(null).then((res) => {
         if (res.code === 200) {
           let data = res['context']
-          console.log(data)
           this.friends = data
         } else {
           this.$message({
@@ -140,24 +140,37 @@ export default {
     },
     // 提交申请
     submitInfo(){
+      this.loading = true;
       submitFriend(this.blog).then((res) => {
+        print(res.code)
         if (res.code === 200) {
+          this.loading = false
           this.$message({
             type: 'success',
             message: '提交成功',
             duration: 1500
           });
+
         } else {
+          this.loading = false;
           this.$message({
             type: 'info',
-            message: '数据获取失败',
+            message: '请仔细核对提交要求',
             duration: 1500
           });
+
         }
-      }).catch((err) => {
-        console.log(err)
+      }).catch(() => {
+        this.loading = false;
+        this.$message({
+          type: 'info',
+          message: '请仔细核对提交要求',
+          duration: 1500
+        });
       })
+
     },
+
     // 获取token
     getcrsf(){
       getToke(null).then((res) => {
@@ -295,6 +308,7 @@ h1 {
 }
 .submit {
   text-align: center;
+  margin-bottom: 20px;
 }
 
 </style>
