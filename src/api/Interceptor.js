@@ -1,18 +1,19 @@
 import axios from "axios";//原生的axios
 import variable from "@/assets/js/variable";
 //用来拦截用的
-axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8'
+
 //创建一个单例
 
 const http=  axios.create({
-    baseURL:variable.proxy,
-    withCredentials:true  //  #允许跨域携带cookie信息，必须加上
+    baseURL:variable.base_url,
+    withCredentials:true , //  #允许跨域携带cookie信息，必须加上
 })
 
 //拦截器  -请求拦截
 http.interceptors.request.use(config=>{
-    if (localStorage.getItem('csrf_token') && config.method === 'post'){
-        config.headers['X-CSRFToken'] = localStorage.getItem('csrf_token')
+    if (localStorage.getItem("csrf_token") && config.method === 'post'){
+        config.headers['Content-type'] = 'application/x-www-form-urlencoded';
+        config.headers['X-CSRFToken'] = localStorage.getItem("csrf_token")
     }
     return config;
 },err=>{

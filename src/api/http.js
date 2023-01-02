@@ -115,7 +115,16 @@ export async function getToke(params){
 export async function submitFriend(params){
     return request({
         url: '/api_friend/addfriend/',
-        method: 'post',
+        method: 'POST',
+        params: params,
+    });
+}
+
+// 获取友链申请
+export async function getFriend(params){
+    return request({
+        url: '/api_friend/getfriend/',
+        method: 'get',
         params: params,
     });
 }

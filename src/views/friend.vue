@@ -42,7 +42,7 @@
               type="text"
               placeholder="请输入你的网站的链接"
               v-model="blog.blogsite"
-              maxlength="10"
+              maxlength="50"
           >
           </el-input>
 
@@ -51,7 +51,7 @@
               type="text"
               placeholder="请输入你的网站的图标"
               v-model="blog.blogicon"
-              maxlength="10"
+              maxlength="100"
           >
           </el-input>
 
@@ -92,7 +92,7 @@
 </template>
 
 <script>
-import {getToke, submitFriend} from "@/api/http";
+import {getFriend, getToke, submitFriend} from "@/api/http";
 
 export default {
   name: `friend`,
@@ -112,74 +112,32 @@ export default {
         bloginfo:'',
         blogemail:''
       },
-      friends:[
-        {
-          blog_name:'123',
-          blog_icon:'https://api.lty.fun/avatar/199d23cdd4aa64716032b7928eb7c94e?s=80&d=404',
-          blog_site:'www.baidu.com',
-          blog_info:'123'
-        },
-        {
-          blog_name:'123',
-          blog_icon:'https://api.lty.fun/avatar/199d23cdd4aa64716032b7928eb7c94e?s=80&d=404',
-          blog_site:'www.baidu.com',
-          blog_info:'123'
-        },
-        {
-          blog_name:'123',
-          blog_icon:'https://api.lty.fun/avatar/199d23cdd4aa64716032b7928eb7c94e?s=80&d=404',
-          blog_site:'www.baidu.com',
-          blog_info:'123'
-        },
-        {
-          blog_name:'123',
-          blog_icon:'https://api.lty.fun/avatar/199d23cdd4aa64716032b7928eb7c94e?s=80&d=404',
-          blog_site:'www.baidu.com',
-          blog_info:'123'
-        },
-        {
-          blog_name:'123',
-          blog_icon:'https://api.lty.fun/avatar/199d23cdd4aa64716032b7928eb7c94e?s=80&d=404',
-          blog_site:'www.baidu.com',
-          blog_info:'123'
-        },
-        {
-          blog_name:'123',
-          blog_icon:'https://api.lty.fun/avatar/199d23cdd4aa64716032b7928eb7c94e?s=80&d=404',
-          blog_site:'www.baidu.com',
-          blog_info:'123'
-        },
-        {
-          blog_name:'123',
-          blog_icon:'https://api.lty.fun/avatar/199d23cdd4aa64716032b7928eb7c94e?s=80&d=404',
-          blog_site:'www.baidu.com',
-          blog_info:'123'
-        },
-        {
-          blog_name:'123',
-          blog_icon:'https://api.lty.fun/avatar/199d23cdd4aa64716032b7928eb7c94e?s=80&d=404',
-          blog_site:'www.baidu.com',
-          blog_info:'123'
-        },
-        {
-          blog_name:'123',
-          blog_icon:'https://api.lty.fun/avatar/199d23cdd4aa64716032b7928eb7c94e?s=80&d=404',
-          blog_site:'www.baidu.com',
-          blog_info:'123'
-        },
-        {
-          blog_name:'123',
-          blog_icon:'https://api.lty.fun/avatar/199d23cdd4aa64716032b7928eb7c94e?s=80&d=404',
-          blog_site:'www.baidu.com',
-          blog_info:'123'
-        },
-      ]
+      friends:[]
     }
   },
   mounted() {
     this.getcrsf()
+    this.getfriend()
   },
   methods:{
+    // 获取友链
+    getfriend(){
+      getFriend(null).then((res) => {
+        if (res.code === 200) {
+          let data = res['context']
+          console.log(data)
+          this.friends = data
+        } else {
+          this.$message({
+            type: 'info',
+            message: '数据获取失败',
+            duration: 1500
+          });
+        }
+      }).catch((err) => {
+        console.log(err)
+      })
+    },
     // 提交申请
     submitInfo(){
       submitFriend(this.blog).then((res) => {
