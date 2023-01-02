@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="navigation">
+    <div id="navigation" class="navigation">
       <div class="navigation_header">
         <span>aglorice</span>
       </div>
@@ -53,6 +53,8 @@ export default {
     return{
       bgcover:0,
       meum_status:0, // 侧边菜单打开的状态（默认为0）
+      // 滚动前，滚动条距文档顶部的距离
+      oldScrollTop: 0,
     }
   },
   components:{
@@ -61,9 +63,25 @@ export default {
 
   },
   mounted() {
-
+    // 监听页面滚动事件
+    window.addEventListener("scroll", this.scrolling)
   },
   methods:{
+    scrolling() {
+      // 滚动条距文档顶部的距离
+      let scrollTop = window.pageYOffset || document.documentElement.scrollTop ||
+          document.body.scrollTop
+      // 滚动条滚动的距离
+      let scrollStep = scrollTop - this.oldScrollTop;
+      // 更新——滚动前，滚动条距文档顶部的距离
+      this.oldScrollTop = scrollTop;
+      if (scrollStep < 0) {
+        document.getElementById('navigation').style.top = '0'
+      } else {
+        document.getElementById('navigation').style.top = '-60px'
+      }
+    },
+    // 判断打开导航
     openMeum(){
       document.getElementById('mobile-sidebar-menus').style.right = '0';
       this.scrollStop();
@@ -108,14 +126,18 @@ export default {
 }
 
 
-
+#navigation {
+  transition: 0.8s;
+}
 .navigation{
+  top:0;
   height: 60px;
   width: 100%;
   display: flex;
   position: fixed;
   @include background_color("background_color1");
   opacity: 0.9;
+
   z-index: 100;
 }
 .navigation_body {
