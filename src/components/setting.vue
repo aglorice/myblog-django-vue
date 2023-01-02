@@ -1,6 +1,5 @@
 <template>
-  <transition name="el-fade-in-linear">
-    <div v-show="isTopShow" class="settings">
+    <div id="setting" class="settings">
     <!--  切换主题-->
       <div class="change_themes">
         <img @click="change_themes" :src="getImageUrl" id="change_themes-icon" alt="">
@@ -10,7 +9,6 @@
         <img @click="tobackUp" src="@/assets/img/icon/backup.png" id="backup-icon" alt="">
       </div>
     </div>
-  </transition>
 </template>
 
 <script>
@@ -64,9 +62,14 @@ export default {
 
   watch:{
     scrollTop:{
-      immediate:true,
       handler(newvalue){
-        this.isTopShow = newvalue > 150;
+
+        if (newvalue > 150){
+          document.getElementById('setting').style.right = '5px'
+        }else {
+          document.getElementById('setting').style.right = '-45px'
+        }
+
       }
     }
   }
@@ -79,7 +82,8 @@ export default {
   width: 40px;
   height: 80px ;
   background-color: #DD1C1C;
-  right: 0;
+  right: 5px;
+  transition: 0.8s;
   bottom: 200px;
   position: fixed;
   float: right;
