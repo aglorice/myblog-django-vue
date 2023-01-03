@@ -53,6 +53,8 @@ export default {
     VueElementLoading,
   },
   mounted () {
+    // 输出佛祖保佑
+    this.consoleFz()
     // 初始化主题
     window.document.documentElement.setAttribute("data-theme", 'day');
     // 获取文章信息
@@ -60,6 +62,7 @@ export default {
   },
   created() {
     // 创建看板娘
+      console.log('000')
       window.L2Dwidget.init({
         pluginRootPath: 'live2dw/',
         pluginJsPath: 'lib/',
@@ -71,11 +74,35 @@ export default {
         mobile: {show: true},
         log: false
       })
-
   },
   beforeUpdate() {
   },
   methods:{
+    //输出佛祖保佑
+    consoleFz(){
+      console.log([
+        "                   _ooOoo_",
+        "                  o8888888o",
+        "                  88\" . \"88",
+        "                  (| -_- |)",
+        "                  O\\  =  /O",
+        "               ____/`---'\\____",
+        "             .'  \\\\|     |//  `.",
+        "            /  \\\\|||  :  |||//  \\",
+        "           /  _||||| -:- |||||-  \\",
+        "           |   | \\\\\\  -  /// |   |",
+        "           | \\_|  ''\\---/''  |   |",
+        "           \\  .-\\__  `-`  ___/-. /",
+        "         ___`. .'  /--.--\\  `. . __",
+        "      .\"\" '<  `.___\\_<|>_/___.'  >'\"\".",
+        "     | | :  `- \\`.;`\\ _ /`;.`/ - ` : | |",
+        "     \\  \\ `-.   \\_ __\\ /__ _/   .-` /  /",
+        "======`-.____`-.___\\_____/___.-`____.-'======",
+        "                   `=---='",
+        "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+        "         佛祖保佑       永无BUG"
+      ].join('\n'));
+    },
     // 获取文章的接口
     getarticle(){
       getArticle(null).then((res) => {

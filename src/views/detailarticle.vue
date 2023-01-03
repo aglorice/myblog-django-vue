@@ -1,8 +1,8 @@
 <template>
   <div class="detailarticle">
-    <div v-if="!loading" :style="{backgroundImage:'url('+articles.imgsrc+')'}" class="container_head">
+    <div v-if="!loading" :style="{backgroundImage:'url('+articles.imgsrc+')'}" id="article-body-head" class="container_head">
       <div class="container-body-article-body-div">
-        <div class="article-body-head">
+        <div  class="article-body-head">
           <span>{{articles.title}}</span>
         </div>
         <div class="container-body-article-body-div-mid">
@@ -30,13 +30,24 @@
         </div>
       </div>
     </div>
+<!--    <div v-for="(anchor,index) in titles" :key="index"-->
+<!--        :style="{ padding: `10px 0 10px ${anchor.indent * 20}px` }"-->
+<!--        @click="handleAnchorClick(anchor)"-->
+<!--    >-->
+<!--      <a style="cursor: pointer">{{ anchor.title }}{{anchor.indent}}</a>-->
+<!--    </div>-->
+    <div class="row detailarticle-body">
+      <v-md-preview class="detailarticle-body-main col-md-9 col-sm-12 "
+                    v-if="!loading"
+                    :text="articles.article"
+                    ref="preview"
+                    @copy-code-success="handleCopyCodeSuccess">
+      </v-md-preview>
+      <div class="list_tree col-md-3">
+        <listtree :listtree="new_listtree" @handleAnchorClick="handleAnchorClick"></listtree>
+      </div>
+    </div>
 
-    <v-md-preview class="preview-themes"
-                  v-if="!loading"
-                  :text="articles.article"
-                  v-highlight
-                  @copy-code-success="handleCopyCodeSuccess">
-    </v-md-preview>
   </div>
 
 </template>
@@ -44,6 +55,8 @@
 <script>
 import {getDetailArticle} from "@/api/http";
 import variable from "@/assets/js/variable";
+import listtree from "@/components/rightCard/listtree";
+import {transListToTreeData} from "@/utils/transListToTreeData";
 
 export default {
   name: `detailarticle`,
@@ -51,7 +64,13 @@ export default {
     return{
       articles:null,
       loading:true,
+      titles:[],
+      new_listtree:'',
+      listref:''
     }
+  },
+  components:{
+    listtree
   },
   props:['id'],
   mounted() {
@@ -62,9 +81,47 @@ export default {
     // 请求文章
     this.getdetailarticle(params)
 
-
   },
   methods:{
+    handleAnchorClick(anchor) {
+
+      const { preview } = this.$refs;
+
+      const { lineIndex } = anchor;
+
+      const heading = preview.$el.querySelector(`[data-v-md-line="${lineIndex}"]`);
+
+      if (heading) {
+        preview.scrollToTarget({
+          target: heading,
+          scrollContainer: window,
+          top: 60,
+        });
+      }
+    },
+    // 处理目录数据
+    handleAnchorData(){
+      const anchors = this.$refs.preview.$el.querySelectorAll('h1,h2,h3');
+      this.listref = this.$refs
+      const titles = Array.from(anchors).filter((title) => !!title.innerText.trim());
+
+      if (!titles.length) {
+        this.titles = [];
+        return;
+      }
+
+      const hTags = Array.from(new Set(titles.map((title) => title.tagName))).sort();
+
+      this.titles = titles.map((el) => ({
+        title: el.innerText,
+        lineIndex: el.getAttribute('data-v-md-line'),
+        indent: hTags.indexOf(el.tagName),
+      }));
+      this.new_listtree = transListToTreeData(this.titles)
+    },
+
+
+
     //复制成功的回调
     handleCopyCodeSuccess(){
       this.$notify({
@@ -94,6 +151,12 @@ export default {
             }
           }
           this.loading = false
+          // 必须等到dom加载完成后才能对其进行dom操作
+          this.$nextTick(async ()=>{
+            this.handleAnchorData()
+          })
+
+
         } else {
           this.$message({
             type: 'info',
@@ -114,11 +177,14 @@ export default {
 <style scoped lang="scss">
 @import "@/assets/scss/_handle.scss";
 @media (max-width: 750px){
-  .preview-themes {
+  .detailarticle-body {
     width: 100% !important;
   }
   .container-body-article-body-div {
     width: 80vw!important;
+  }
+  .list_tree {
+    display: none;
   }
 }
 .container_head {
@@ -210,9 +276,15 @@ export default {
   }
 
 }
-.preview-themes {
-  width: 70vw;
+
+.detailarticle-body {
+  width: 90%;
+
+}
+.detailarticle-body-main {
+  position: relative;
   @include background_color("background_color1");
+  @include box_shadow("box_shadow_color1");
   @include font_color("font_color1");
 }
 .detailarticle {
@@ -220,6 +292,9 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  transition: 0.8s;
+  @include background_color("background_color1");
+  @include font_color("font_color1");
 }
 .container-body-article-body-div {
   width: 50vw;
