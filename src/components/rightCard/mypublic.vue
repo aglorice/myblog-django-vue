@@ -1,5 +1,5 @@
 <template>
-  <el-card id="box-card" class="box-card container-body-card">
+  <el-card  id="box-card" class="box-card container-body-card">
     <div slot="header" class="clearfix">
       <img src="@/assets/img/icon/public.png" alt="">
       <p>公告</p>

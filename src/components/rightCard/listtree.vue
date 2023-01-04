@@ -36,7 +36,7 @@ export default {
     handleNodeClick(data) {
       this.$emit('handleAnchorClick',data)
     },
-    // 处理目录
+    // 处理目录使得它始终能够处于可视范围内
     handleScrollx() {
       let tophead = document.getElementById('article-body-head').clientHeight;
       let marginTop = window.pageYOffset-tophead
