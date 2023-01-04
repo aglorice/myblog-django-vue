@@ -47,7 +47,7 @@
         <listtree :listtree="new_listtree" @handleAnchorClick="handleAnchorClick"></listtree>
       </div>
     </div>
-
+    <mobileArticleMenus :listtree="new_listtree" @handleAnchorClick="handleAnchorClick"></mobileArticleMenus>
   </div>
 
 </template>
@@ -57,6 +57,7 @@ import {getDetailArticle} from "@/api/http";
 import variable from "@/assets/js/variable";
 import listtree from "@/components/rightCard/listtree";
 import {transListToTreeData} from "@/utils/transListToTreeData";
+import mobileArticleMenus from "@/components/mobile-article-menus";
 
 export default {
   name: `detailarticle`,
@@ -70,7 +71,8 @@ export default {
     }
   },
   components:{
-    listtree
+    listtree,
+    mobileArticleMenus
   },
   props:['id'],
   mounted() {
