@@ -37,21 +37,21 @@
                   </div>
                   <div class="container-body-article-body-div-mid">
                     <div class="article-body-icon">
-                      <img  src="@/assets/img/icon/datetime.png" alt="">
+                      <i class="el-icon-date"></i>
                       <span >{{value.datetime}}</span>
                     </div>
                     <div class="split-line">
-                      <p>|</p>
+                      <el-divider direction="vertical"></el-divider>
                     </div>
                     <div class="article-body-icon">
-                      <img src="@/assets/img/icon/category_icon.png" alt="">
+                      <i class="el-icon-files"></i>
                       <span>{{value.category}}</span>
                     </div>
                     <div class="split-line">
-                      <p >|</p>
+                      <el-divider direction="vertical"></el-divider>
                     </div>
                     <div class="article-body-icon">
-                      <img src="@/assets/img/icon/eye.png" alt="">
+                      <i class="el-icon-view"></i>
                       <span >{{value.Pageview}}</span>
                     </div>
                   </div>
@@ -284,16 +284,6 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  img {
-    width: auto;
-    height: 1em;
-    margin-right: 10px;
-    margin-top: 0.25em;
-  }
-  span {
-    height: 1.2em;
-    display: block;
-  }
 }
 .split-line {
   p {

@@ -2,22 +2,40 @@
 <div id="mobile-sidebar-menus" class="mobile-sidebar-menus">
   <ul id="menu_item_my">
     <li @click="changeMenu">
-      <router-link  :to="`/index`"><img src="@/assets/img/icon/home.png" alt="">首页</router-link>
-    </li>
-    <li  @click="changeMenu">
-      <router-link :to="`/article`"><img src="@/assets/img/icon/article.png" alt="">文章</router-link>
+      <router-link :to="`/index`"><i class="el-icon-house"></i>首页</router-link>
     </li>
     <li @click="changeMenu">
-      <router-link  :to="`/categorize`"><img src="@/assets/img/icon/category.png" alt="">分类</router-link>
+      <router-link :to="`/article`"><i class="el-icon-document"></i>文章</router-link>
     </li>
     <li @click="changeMenu">
-      <router-link  :to="`/pag`"><img src="@/assets/img/icon/pag.png" alt="">标签</router-link>
+      <router-link :to="`/categorize`"><i class="el-icon-files"></i>分类</router-link>
     </li>
     <li @click="changeMenu">
-      <router-link  :to="`/friend`"><img src="@/assets/img/icon/friend.png" alt="">友人帐</router-link>
+      <router-link :to="`/pag`"><i class="el-icon-collection-tag"></i>标签</router-link>
     </li>
     <li @click="changeMenu">
-      <router-link  :to="`/about`"><img src="@/assets/img/icon/about.png" alt="">关于</router-link>
+      <router-link :to="`/friend`"><i class="el-icon-link"></i>友人帐</router-link>
+    </li>
+    <li @click="changeMenu">
+      <router-link :to="`/about`"><i class="el-icon-user"></i>关于</router-link>
+    </li>
+    <li @click="changeMenu">
+      <a>
+        <el-dropdown>
+              <span class="el-dropdown-link">
+                <i class="el-icon-menu"></i>更多
+                <i class="el-icon-arrow-down el-icon--right"></i>
+              </span>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item icon="el-icon-plus">黄金糕</el-dropdown-item>
+            <el-dropdown-item icon="el-icon-circle-plus">狮子头</el-dropdown-item>
+            <el-dropdown-item icon="el-icon-circle-plus-outline">螺蛳粉</el-dropdown-item>
+            <el-dropdown-item icon="el-icon-check">双皮奶</el-dropdown-item>
+            <el-dropdown-item icon="el-icon-circle-check">蚵仔煎</el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+      </a>
+
     </li>
   </ul>
 </div>

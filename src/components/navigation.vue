@@ -7,22 +7,37 @@
       <div id="navigation_body" class="navigation_body">
         <ul>
           <li>
-            <router-link :to="`/index`"><img src="@/assets/img/icon/home.png" alt="">首页</router-link>
+            <router-link :to="`/index`"><i class="el-icon-house"></i>首页</router-link>
           </li>
           <li>
-            <router-link :to="`/article`"><img src="@/assets/img/icon/article.png" alt="">文章</router-link>
+            <router-link :to="`/article`"><i class="el-icon-document"></i>文章</router-link>
           </li>
           <li>
-            <router-link :to="`/categorize`"><img src="@/assets/img/icon/category.png" alt="">分类</router-link>
+            <router-link :to="`/categorize`"><i class="el-icon-files"></i>分类</router-link>
           </li>
           <li>
-            <router-link :to="`/pag`"><img src="@/assets/img/icon/pag.png" alt="">标签</router-link>
+            <router-link :to="`/pag`"><i class="el-icon-collection-tag"></i>标签</router-link>
           </li>
           <li>
-            <router-link :to="`/friend`"><img src="@/assets/img/icon/friend.png" alt="">友人帐</router-link>
+            <router-link :to="`/friend`"><i class="el-icon-link"></i>友人帐</router-link>
           </li>
           <li>
-            <router-link :to="`/about`"><img src="@/assets/img/icon/about.png" alt="">关于</router-link>
+            <router-link :to="`/about`"><i class="el-icon-user"></i>关于</router-link>
+          </li>
+          <li>
+            <a>
+              <el-dropdown>
+              <span class="el-dropdown-link">
+                <i class="el-icon-menu"></i>更多
+                <i class="el-icon-arrow-down el-icon--right"></i>
+              </span>
+                <el-dropdown-menu slot="dropdown">
+                  <el-dropdown-item icon="el-icon-chat-dot-square"><router-link :to="`/talking`">说说</router-link></el-dropdown-item>
+                  <el-dropdown-item icon="el-icon-film"><router-link :to="`/chasefan`">追番</router-link></el-dropdown-item>
+                </el-dropdown-menu>
+              </el-dropdown>
+            </a>
+
           </li>
         </ul>
       </div>
@@ -139,6 +154,9 @@ export default {
   opacity: 0.9;
 
   z-index: 100;
+}
+.el-dropdown-link {
+  @include font_color("font_color1");
 }
 .navigation_body {
   flex: 1;
