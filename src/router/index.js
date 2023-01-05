@@ -1,8 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 
-
-
 const NotFoundComponent = ()=> import ("@/components/NotFoundComponent"); // 关于
 const Remind = ()=> import ("@/views/about"); // 关于
 const Categorize = ()=> import("@/views/category");
@@ -12,7 +10,8 @@ const Home = ()=> import("@/views/index");
 const detailArticle = ()=> import("@/views/detailarticle")
 const dateTime = ()=> import("@/views/datetime")
 const friend = ()=> import("@/views/friend")
-
+const ChaseFan = ()=> import('@/views/chasefan')
+const Talking = ()=> import('@/views/Talking')
 Vue.use(VueRouter);
 
 const routes = [
@@ -40,7 +39,7 @@ const routes = [
         path: '/article',
         component:Article,
         meta:{
-            title:'文章'
+            title:'文章|前端小窝'
         },
     },
     {
@@ -92,6 +91,20 @@ const routes = [
         component:Remind,
         meta:{
             title:'关于'
+        }
+    },
+    {
+        path: '/chasefan',
+        component:ChaseFan,
+        meta: {
+            title: '追番'
+        }
+    },
+    {
+        path: '/talking',
+        component:Talking,
+        meta: {
+            title: '追番'
         }
     }
 ]

@@ -12,7 +12,7 @@
       <!--    导航栏-->
       <navigation></navigation>
       <transition :name="transitionName" mode="out-in">
-        <keep-alive include="index,article,categorize,pag">
+        <keep-alive include="index,Article,categorize,pag,about,Talking,friend">
           <router-view :articles="completeArticles"></router-view>
         </keep-alive>
       </transition>
