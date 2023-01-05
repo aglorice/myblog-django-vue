@@ -129,5 +129,13 @@ export async function getFriend(params){
     });
 }
 
+// 获取番剧列表
+export async function getFans(params){
+    return request({
+        url: '/api/getfans/',
+        method: 'get',
+        params: params,
+    });
+}
 
 
