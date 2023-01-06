@@ -26,6 +26,10 @@
     <li @click="changeMenu">
       <router-link :to="`/chasefan`"><i class="el-icon-film"></i>追番</router-link>
     </li>
+
+    <li @click="changeMenu">
+      <router-link :to="`/datetime`"><i class="el-icon-folder-opened"></i>归档</router-link>
+    </li>
   </ul>
 </div>
 </template>
