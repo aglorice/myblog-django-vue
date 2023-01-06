@@ -116,6 +116,8 @@ export default {
           let article = {};
 
           let data = res['context']
+          // 提交原始的的文章数据
+          this.$store.dispatch('putoriginalarticles', data)
           let page_count = res['count']
           let completeArticle = []
           let completeArticleAll = {}

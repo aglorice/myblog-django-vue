@@ -35,8 +35,6 @@ export function transListToTreeData(list) {
                 }
             }
         }
-
-
     }
     return arr
 }

@@ -17,14 +17,14 @@
               </div>
               <div class="container-body-article-body-div-mid">
                 <div class="article-body-icon">
-                  <i class="el-icon-files"></i>
+                  <i class="el-icon-date"></i>
                   <span >{{value.datetime}}</span>
                 </div>
                 <div class="split-line">
                   <el-divider direction="vertical"></el-divider>
                 </div>
                 <div class="article-body-icon">
-                  <i class="el-icon-date"></i>
+                  <i class="el-icon-files"></i>
                   <span>{{value.category}}</span>
                 </div>
                 <div class="split-line">
