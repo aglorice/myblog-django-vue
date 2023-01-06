@@ -1,14 +1,5 @@
 
 const mutations = {
-    modifyShow(state,value){
-        state.isShow = value;
-    },
-    modifyBottomShow(state,value){
-        state.bottomisShow = value
-    },
-    modifyTarShow(state,value){
-        state.tarIsShow = value
-    },
     putArticle(state,value){
         state.completeArticle = value
     },
@@ -26,11 +17,14 @@ const mutations = {
             }
         }
     },
-     putMusic(state,value){
-
-         this.state.music = value
-     }
-
+    putOriginalArticles(state,value){
+        // 将所有的数组连接起来
+        let OriginalArticles = [];
+        for(let item in value){
+            OriginalArticles.push(...value[item])
+        }
+        state.OriginalArticles = OriginalArticles
+    }
 }
 
  export default mutations

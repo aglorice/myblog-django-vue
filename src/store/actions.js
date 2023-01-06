@@ -1,13 +1,4 @@
 const actions = {
-    modifyshow(content,value){
-        content.commit("modifyShow",value)
-    },
-    modifybottomshow(content,value){ // 底部信息
-        content.commit("modifyBottomShow",value)
-    },
-    modifytarshow(content,value){
-        content.commit("modifyTarShow",value)
-    },
     putarticle(content,value){
         content.commit("putArticle",value)
     },
@@ -18,10 +9,10 @@ const actions = {
 
         content.commit("modifyPageView",value)
     },
-    putmusic(content, value){
-
-        content.commit("putMusic",value)
-    }
+    // 提交原始的文章数据
+    putoriginalarticles(content, value){
+        content.commit("putOriginalArticles",value)
+    },
 }
 
 export default actions

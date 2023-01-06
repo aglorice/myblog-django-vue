@@ -7,7 +7,8 @@ import actions from "@/store/actions";
 Vue.use(Vuex)
 const state = {
     completeArticle:[], // 完整的
-    article:{}
+    article:{},
+    OriginalArticles:[] // 原始的文章数据
 }
 // 注册上面引入的各大模块
 const store = new Vuex.Store({
