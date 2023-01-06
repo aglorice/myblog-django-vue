@@ -12,7 +12,7 @@
       <!--    导航栏-->
       <navigation></navigation>
       <transition :name="transitionName" mode="out-in">
-        <keep-alive include="index,Article,categorize,pag,about,Talking,friend">
+        <keep-alive include="index,Article,category,pag,about,Talking,friend,chasefan">
           <router-view :articles="completeArticles"></router-view>
         </keep-alive>
       </transition>
@@ -171,6 +171,7 @@ export default {
 
 <style>
 * {
+  font-family: "思源宋体 CN VF Regular";
   padding: 0;
   margin: 0;
   font-size: 16px;

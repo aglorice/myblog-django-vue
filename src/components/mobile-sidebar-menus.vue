@@ -19,23 +19,12 @@
     <li @click="changeMenu">
       <router-link :to="`/about`"><i class="el-icon-user"></i>关于</router-link>
     </li>
+    <el-divider content-position="center">更多</el-divider>
     <li @click="changeMenu">
-      <a>
-        <el-dropdown>
-              <span class="el-dropdown-link">
-                <i class="el-icon-menu"></i>更多
-                <i class="el-icon-arrow-down el-icon--right"></i>
-              </span>
-          <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item icon="el-icon-plus">黄金糕</el-dropdown-item>
-            <el-dropdown-item icon="el-icon-circle-plus">狮子头</el-dropdown-item>
-            <el-dropdown-item icon="el-icon-circle-plus-outline">螺蛳粉</el-dropdown-item>
-            <el-dropdown-item icon="el-icon-check">双皮奶</el-dropdown-item>
-            <el-dropdown-item icon="el-icon-circle-check">蚵仔煎</el-dropdown-item>
-          </el-dropdown-menu>
-        </el-dropdown>
-      </a>
-
+      <router-link :to="`/talking`"><i class="el-icon-chat-dot-square"></i>说说</router-link>
+    </li>
+    <li @click="changeMenu">
+      <router-link :to="`/chasefan`"><i class="el-icon-film"></i>追番</router-link>
     </li>
   </ul>
 </div>

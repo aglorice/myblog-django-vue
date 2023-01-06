@@ -125,6 +125,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "@/assets/scss/font.scss";
 @import "@/assets/scss/_handle.scss";
 //响应式（媒体查询）
 
@@ -145,6 +146,7 @@ export default {
   transition: 0.8s;
 }
 .navigation{
+
   top:0;
   height: 60px;
   width: 100%;
@@ -202,6 +204,7 @@ export default {
   span {
     position: absolute;
     font-size: 1.5em;
+    font-weight: bold;
     @include font_color("font_color1");
     margin: 11px;
   }

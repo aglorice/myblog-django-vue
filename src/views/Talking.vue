@@ -20,7 +20,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-image: url("@/assets/img/backgound-img/index.png");
+  background-image: url("@/assets/img/backgound-img/talking.png");
   background-position: center center;
   /* 背景图不平铺 */
   background-repeat: no-repeat;

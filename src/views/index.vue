@@ -181,11 +181,13 @@ export default {
   /* 让背景图基于容器大小伸缩 */
   background-size: cover;
   h1 {
+    font-family: Noto Serif SC,serif;
     font-size: 3em;
     color: white;
   }
 
   .desc {
+    font-family: Noto Serif SC,serif;
     width: 21em;
     color: white;
     margin-top: 30px;
@@ -312,12 +314,12 @@ export default {
   margin-top: 20px;
 
   h2 {
+    font-size: 1.5em;
     display:-webkit-box;
     overflow: hidden; /*超出隐藏*/
     text-overflow: ellipsis;/*隐藏后添加省略号*/
     -webkit-box-orient:vertical;
     -webkit-line-clamp:1; //想显示多少行
-    font-size: 1.5em;
   }
 }
 .container-body-article-router-link {
