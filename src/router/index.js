@@ -12,6 +12,7 @@ const dateTime = ()=> import("@/views/datetime")
 const friend = ()=> import("@/views/friend")
 const ChaseFan = ()=> import('@/views/chasefan')
 const Talking = ()=> import('@/views/Talking')
+
 Vue.use(VueRouter);
 
 const routes = [
