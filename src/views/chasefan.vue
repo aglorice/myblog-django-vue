@@ -26,6 +26,7 @@
 
 <script>
 import {getFans} from "@/api/http";
+import {startSakura} from "@/utils/fullscreenflower";
 
 export default {
   name: `chasefan`,
@@ -35,9 +36,23 @@ export default {
     }
   },
   mounted() {
-    this.getFans()
+    this.myStartSakura()
+    this.getFans() // 获取番剧信息
+  },
+  destroyed() {
+    // stopp() // 停止樱花
+    document.getElementById('canvas_sakura').style.display = 'none'
   },
   methods:{
+    // 开启樱花特效
+    myStartSakura(){
+      if (document.getElementById('canvas_sakura')){
+        document.getElementById('canvas_sakura').style.display = 'block'
+      }else {
+        startSakura() // 樱花特效
+      }
+
+    },
     getFans(){
       let param = {
         vmid:1705222226,
