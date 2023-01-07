@@ -4,47 +4,28 @@
       <h1>归档</h1>
     </div>
     <div class="datetime">
+      <p class="datetime-head">时光荏苒，不知不觉已经过了下面这么多年了</p>
       <div class="datetime-body">
         <el-collapse accordion>
-          <el-collapse-item>
+          <el-collapse-item v-for="(value,index) in datetimeArticle"
+                            class="datetime-collapse"
+                            :key="index">
             <template slot="title">
-              一致性 Consistency<i class="header-icon el-icon-info"></i>
+              {{index}}
+              <div class="datetimeArticleNumber">
+                <p >{{value.length}}篇</p>
+              </div>
             </template>
-            <div class="block">
-              <el-timeline>
-                <el-timeline-item timestamp="2018/4/12" placement="top">
-                  <el-card>
-                    <h4>更新 Github 模板</h4>
-                    <p>王小虎 提交于 2018/4/12 20:46</p>
-                  </el-card>
-                </el-timeline-item>
-                <el-timeline-item timestamp="2018/4/3" placement="top">
-                  <el-card>
-                    <h4>更新 Github 模板</h4>
-                    <p>王小虎 提交于 2018/4/3 20:46</p>
-                  </el-card>
-                </el-timeline-item>
-                <el-timeline-item timestamp="2018/4/2" placement="top">
-                  <el-card>
-                    <h4>更新 Github 模板</h4>
-                    <p>王小虎 提交于 2018/4/2 20:46</p>
-                  </el-card>
-                </el-timeline-item>
-              </el-timeline>
-            </div>
-          </el-collapse-item>
-          <el-collapse-item title="反馈 Feedback">
-            <div>控制反馈：通过界面样式和交互动效让用户可以清晰的感知自己的操作；</div>
-            <div>页面反馈：操作后，通过页面元素的变化清晰地展现当前状态。</div>
-          </el-collapse-item>
-          <el-collapse-item title="效率 Efficiency">
-            <div>简化流程：设计简洁直观的操作流程；</div>
-            <div>清晰明确：语言表达清晰且表意明确，让用户快速理解进而作出决策；</div>
-            <div>帮助用户识别：界面简单直白，让用户快速识别而非回忆，减少用户记忆负担。</div>
-          </el-collapse-item>
-          <el-collapse-item title="可控 Controllability">
-            <div>用户决策：根据场景可给予用户操作建议或安全提示，但不能代替用户进行决策；</div>
-            <div>结果可控：用户可以自由的进行操作，包括撤销、回退和终止当前操作等。</div>
+            <el-timeline>
+              <el-timeline-item v-for="(value_item) in value"
+                                :timestamp="value_item.created_time"
+                                :key="value_item.id"
+                                placement="top">
+                <el-card >
+                  <router-link  :to="`/article/details/${value_item.id}`"><h4 class="datetime-title-id">{{value_item.title}}</h4></router-link>
+                </el-card>
+              </el-timeline-item>
+            </el-timeline>
           </el-collapse-item>
         </el-collapse>
       </div>
@@ -66,8 +47,10 @@ export default {
     }
   },
   mounted() {
-    this.datetimeArticle = this.$store.state.OriginalArticles
-    datetime(this.datetimeArticle)
+    this.datetimeArticle = datetime(this.$store.state.OriginalArticles)
+
+  },
+  methods:{
   }
 }
 </script >
@@ -106,8 +89,32 @@ h1 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  @include background_color("background_color1");
+  p {
+    @include font_color("font_color1");
+  }
+  .datetime-head {
+    margin: 50px 0 50px 0;
+  }
 }
 .datetime-body {
-  width: 70%;
+  width: 80%;
 }
+.datetimeArticleNumber {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  p {
+    margin-bottom: 0;
+  }
+}
+
+.el-timeline {
+  padding-left: 10px;
+}
+.el-collapse-item__header {
+  @include background_color("background_color1");
+  @include font_color("font_color1");
+}
+
 </style>
