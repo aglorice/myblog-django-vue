@@ -61,7 +61,6 @@ export default {
         if (res.code === 200) {
           let data = res['context']['data']['list']
           this.fansData = data
-          console.log(data)
           // 将信息提交到vuex
         } else {
           this.$message({
