@@ -12,6 +12,7 @@ const dateTime = ()=> import("@/views/datetime")
 const friend = ()=> import("@/views/friend")
 const ChaseFan = ()=> import('@/views/chasefan')
 const Talking = ()=> import('@/views/Talking')
+const categoryArticle = ()=> import('@/views/categoryArticle')
 
 Vue.use(VueRouter);
 
@@ -44,10 +45,10 @@ const routes = [
         },
     },
     {
-        path: '/article/type/id',
-        component:Article,
+        path: '/article/:category',
+        component: categoryArticle,
         meta:{
-            title:'文章'
+            title:'文章|前端小'
         },
     },
     {
