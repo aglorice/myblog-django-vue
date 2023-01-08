@@ -62,7 +62,6 @@ export default {
   },
   created() {
     // 创建看板娘
-      console.log('000')
       window.L2Dwidget.init({
         pluginRootPath: 'live2dw/',
         pluginJsPath: 'lib/',
