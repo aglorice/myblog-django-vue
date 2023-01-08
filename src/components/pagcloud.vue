@@ -104,6 +104,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "@/assets/scss/_handle.scss";
 @media (max-width: 750px){
   .wordCloudPagBorder{
     width: 90% !important;
@@ -112,6 +113,7 @@ export default {
 #wordCloudPag {
   width: 100%;
   height: 40vh !important;
+  @include background_color("background_color1");
 
 }
 .wordCloudPag {
