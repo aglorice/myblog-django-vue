@@ -11,7 +11,6 @@ const detailArticle = ()=> import("@/views/detailarticle")
 const dateTime = ()=> import("@/views/datetime")
 const friend = ()=> import("@/views/friend")
 const ChaseFan = ()=> import('@/views/chasefan')
-const Talking = ()=> import('@/views/Talking')
 const categoryArticle = ()=> import('@/views/categoryArticle')
 const pagArticle = ()=> import('@/views/pagArticle')
 
@@ -110,13 +109,6 @@ const routes = [
             title: '追番'
         }
     },
-    {
-        path: '/talking',
-        component:Talking,
-        meta: {
-            title: '追番'
-        }
-    }
 ]
 
 
