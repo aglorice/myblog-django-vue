@@ -22,6 +22,7 @@ export default {
   mounted() {
     this.getCountpag()
   },
+
   methods: {
     // 请求pag的数据
     getCountpag(){
@@ -95,6 +96,9 @@ export default {
       myChart.on('click', function (params) {
         _this.$router.push(`/article/pag/${params.name}`)
       });
+      window.addEventListener('resize', () => {
+        myChart.resize()
+      })
     }
 
   }
