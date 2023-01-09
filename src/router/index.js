@@ -13,6 +13,7 @@ const friend = ()=> import("@/views/friend")
 const ChaseFan = ()=> import('@/views/chasefan')
 const Talking = ()=> import('@/views/Talking')
 const categoryArticle = ()=> import('@/views/categoryArticle')
+const pagArticle = ()=> import('@/views/pagArticle')
 
 Vue.use(VueRouter);
 
@@ -45,10 +46,17 @@ const routes = [
         },
     },
     {
-        path: '/article/:category',
+        path: '/article/category/:category',
         component: categoryArticle,
         meta:{
             title:'文章|前端小'
+        },
+    },
+    {
+        path: '/article/pag/:pag',
+        component: pagArticle,
+        meta:{
+            title:'文章|前端'
         },
     },
     {
