@@ -4,24 +4,54 @@
     <h1>分类</h1>
     <h4>{{this.$route.params.category}}</h4>
   </div>
+  <div class="container_body">
+    <h4>一共发现了9篇文章</h4>
+    <div class="category_type">
+      <el-timeline>
+        <el-timeline-item v-for="(value) in category"
+                          :timestamp="value.created_time"
+                          :key="value.id"
+                          placement="top">
+          <el-card >
+            <router-link  :to="`/article/details/${value.id}`"><h4 class="datetime-title-id">{{value.title}}</h4></router-link>
+          </el-card>
+        </el-timeline-item>
+      </el-timeline>
+    </div>
+
+  </div>
 </div>
 </template>
 
 <script>
+
+import {article_type} from "@/utils/category_type";
+
 export default {
   name: `categoryArticle`,
   data(){
     return{
-
+      category:[]
+    }
+  },
+  mounted() {
+    this.articleType()
+  },
+  methods:{
+    articleType(){
+      this.category = article_type(this.$store.state.OriginalArticles,this.$route.params.category,'categorize')
     }
   }
+
 }
 </script>
 
 <style scoped lang="scss">
 @import "@/assets/scss/_handle.scss";
 @media (max-width: 750px) {
-
+  .category_type {
+    width: 90% !important;
+  }
 }
 .container_head {
   width: 100vw;
@@ -46,5 +76,22 @@ export default {
   h4 {
     color: white;
   }
+}
+.container_body {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  @include background_color("background_color1");
+  @include font_color("font_color1");
+  h4 {
+    margin-top: 20px;
+    font-family: Noto Serif SC,serif;
+  }
+}
+.category_type {
+  margin-top: 20px;
+  width: 70%;
 }
 </style>
