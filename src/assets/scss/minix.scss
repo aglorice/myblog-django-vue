@@ -1,0 +1,12 @@
+// ul的小点样式美化--before
+@mixin ul_style{
+  top:0.28em;
+  left: 0;
+  content: ''; // 伪类生效必须加上这个
+  position: absolute;
+  width: 1em;
+  height: 1em;
+  background: transparent;
+  border-radius: 0.5em;
+  border: 0.3em skyblue solid;
+}
