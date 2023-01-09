@@ -1,5 +1,6 @@
 <template>
 <div class="page_bottom">
+  <el-divider content-position="center">已经到底部了</el-divider>
   <div class="page_bottom_dance">
     <img src="@/assets/img/backgound-img/dance.png" alt="没有未来的未来不是我要的未来">
   </div>
@@ -110,7 +111,6 @@ export default {
 
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   background-color: #66797c;
   @include background_color("background_color1");
   @include font_color("font_color1");

@@ -5,7 +5,7 @@
       <h4>{{this.$route.params.pag}}</h4>
     </div>
     <div class="container_body">
-      <h4>一共发现了{{pag.length}}篇文章</h4>
+
       <div class="category_type">
         <el-timeline>
           <el-timeline-item v-for="(value) in pag"

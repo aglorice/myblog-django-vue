@@ -28,6 +28,7 @@ import hljs from 'highlight.js';
 //echarts
 import { LegendComponent } from 'echarts/components';
 import * as echarts from "echarts";
+Vue.prototype.$echarts = echarts;
 
 echarts.use([LegendComponent]);
 VMdPreview.use(githubTheme, {

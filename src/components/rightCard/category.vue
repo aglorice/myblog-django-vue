@@ -32,7 +32,7 @@ export default {
   methods:{
     // 路由跳转到分类界面
     categoryType(type_name){
-      this.$router.push(`/article/${type_name}`)
+      this.$router.push(`/article/category/${type_name}`)
     },
     getcountcategorize(){
       getCountCategorize(null).then((res) => {

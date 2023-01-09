@@ -57,6 +57,7 @@ export default {
 
 <style scoped lang="scss">
 @import "@/assets/scss/_handle.scss";
+@import "@/assets/scss/minix.scss"; // ul样式美化
 @media (max-width: 750px) {
   .category_list_item {
     width: 90%!important;
@@ -77,10 +78,10 @@ export default {
 //background-attachment: fixed;
   /* 让背景图基于容器大小伸缩 */
   background-size: cover;
-h1 {
-  font-size: 3em;
-  color: white;
-}
+  h1 {
+    font-size: 3em;
+    color: white;
+  }
 
 }
 .container_head {
@@ -114,19 +115,12 @@ h1 {
     }
   }
   li::before {
-    top:0.28em;
-    left: 0;
-    content: ''; // 伪类生效必须加上这个
-    position: absolute;
-    width: 1em;
-    height: 1em;
-    background: transparent;
-    border-radius: 0.5em;
-    border: 0.3em skyblue solid;
+    @include ul_style
   }
   li:hover:before {
     border: 0.3em darkorange solid;
   }
+
 
   width: 70%;
 }
