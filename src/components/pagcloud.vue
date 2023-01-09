@@ -28,7 +28,7 @@ export default {
       getCountPag(null).then((res) => {
         if (res.code === 200) {
           this.echartsData= res['context']
-          this.initChart();
+          this.initChart(this);
           // 将信息提交到vuex
         } else {
           this.$message({
@@ -42,7 +42,7 @@ export default {
       })
     },
 
-    initChart() {
+    initChart(_this) {
       var myChart = echarts.init(document.getElementById('wordCloudPag'));
       const option = {
         title: {
@@ -93,7 +93,7 @@ export default {
       myChart.setOption(option);
       // 点击某个字
       myChart.on('click', function (params) {
-        console.log('myChart----click---:', params, '------', params.data)
+        _this.$router.push(`/article/pag/${params.name}`)
       });
     }
 
@@ -117,6 +117,7 @@ export default {
 
 }
 .wordCloudPag {
+  @include background_color("background_color1");
   width: 100vw;
 
   display: flex;
