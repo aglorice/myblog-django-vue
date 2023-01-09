@@ -39,7 +39,6 @@ export default {
         if(this.scrollTop<=0){
           document.documentElement.scrollTop = 0;
           clearInterval(timer);
-
         }
       }, 1);
     },
@@ -54,7 +53,6 @@ export default {
     }
   },
   computed: {
-
     getImageUrl () {
       return require('@/assets/img/icon/'+this.themes_img+'.png');
     }

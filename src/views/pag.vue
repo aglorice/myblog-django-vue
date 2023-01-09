@@ -22,7 +22,6 @@ export default {
 .container_head {
   width: 100vw;
   height: 60vh;
-  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -35,6 +34,7 @@ export default {
 //background-attachment: fixed;
   /* 让背景图基于容器大小伸缩 */
   background-size: cover;
+  margin-bottom: 0;
 h1 {
   font-size: 3em;
   color: white;
