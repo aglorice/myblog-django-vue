@@ -2,11 +2,12 @@
   <el-card  id="box-card" class="box-card container-body-card">
     <div slot="header" class="clearfix">
       <img src="@/assets/img/icon/rightcategorize.png" alt="">
-      <p>标签</p>
+      <p>分类</p>
     </div>
     <div class="box-card-body">
       <ul>
-        <li v-for="(value,index) in category" :key="index">
+        <li v-for="(value,index) in category"
+            :key="index" @click="categoryType(value.name)">
           <span>{{value.name}}</span>
           <p>{{value.value}}</p>
         </li>
@@ -29,6 +30,10 @@ export default {
     this.getcountcategorize()
   },
   methods:{
+    // 路由跳转到分类界面
+    categoryType(type_name){
+      this.$router.push(`/article/${type_name}`)
+    },
     getcountcategorize(){
       getCountCategorize(null).then((res) => {
         if (res.code === 200) {

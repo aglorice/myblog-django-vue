@@ -8,7 +8,7 @@
       <p>目前共计{{echartsData.length}}个分类</p>
       <ul class="category_list_item" v-for="(category_item) in echartsData" :key="category_item.name">
         <li>
-          <router-link :to="`/article/${category_item.name}/`">{{category_item.name}}</router-link>
+          <router-link :to="`/article/category/${category_item.name}/`">{{category_item.name}}</router-link>
           <span>({{category_item.value}})</span>
         </li>
       </ul>
