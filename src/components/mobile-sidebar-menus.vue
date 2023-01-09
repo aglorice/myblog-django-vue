@@ -21,9 +21,6 @@
     </li>
     <el-divider content-position="center">更多</el-divider>
     <li @click="changeMenu">
-      <router-link :to="`/talking`"><i class="el-icon-chat-dot-square"></i>说说</router-link>
-    </li>
-    <li @click="changeMenu">
       <router-link :to="`/chasefan`"><i class="el-icon-film"></i>追番</router-link>
     </li>
 
