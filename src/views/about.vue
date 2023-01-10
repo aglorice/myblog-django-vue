@@ -12,7 +12,7 @@
       <div class="row">
         <div class="col-md-12 col-lg-6" id="category_chart"></div>
         <div class="col-md-12 col-lg-6" id="pag_chart"></div>
-        <div class="col-lg-6" id="article_chart"></div>
+        <div class="col-lg-12" id="article_chart"></div>
       </div>
 
 
@@ -22,40 +22,64 @@
 </template>
 
 <script>
+import {getAbout} from "@/api/http";
+import transChartsDate from "@/utils/chartsArticle";
+
 export default {
   name: `about`,
   data(){
     return{
       loading:false,
-      about:'123123'
+      about:'123123',
+      chartDate:{}
     }
   },
   mounted() {
+    this.chartDate = transChartsDate(this.$store.state.OriginalArticles)
+    this.getRemind();
     this.drawChartCategory();
+    this.drawChartPag();
+    this.drawArticle()
   },
 
   methods:{
+    getRemind(){
+      getAbout(null).then((res) => {
+        if (res.code === 200) {
+          this.about = res['context'][0]['fields']['content']
+          // 将信息提交到vuex
+        } else {
+          this.$message({
+            type: 'info',
+            message: '数据获取失败',
+            duration: 1500
+          });
+        }
+      }).catch((err) => {
+        console.log(err)
+      })
+    },
     drawChartCategory() {
       // 基于准备好的dom，初始化echarts实例  这个和上面的main对应
       let myChart = this.$echarts.init(document.getElementById("category_chart"));
       // 指定图表的配置项和数据
       let option = {
         title: {
-          text: "ECharts 入门示例",
+          text: "文章分类",
         },
         tooltip: {},
         legend: {
-          data: ["销量"],
+          data: ["数量"],
         },
         xAxis: {
-          data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"],
+          data: this.chartDate['categorys'].name,
         },
         yAxis: {},
         series: [
           {
-            name: "销量",
+            name: "数量",
             type: "bar",
-            data: [5, 20, 36, 10, 10, 20],
+            data: this.chartDate['categorys'].value,
           },
         ],
       };
@@ -65,6 +89,68 @@ export default {
         myChart.resize()
       })
     },
+    drawChartPag(){
+      // 基于准备好的dom，初始化echarts实例  这个和上面的main对应
+      let myChart = this.$echarts.init(document.getElementById("pag_chart"));
+      // 指定图表的配置项和数据
+      let option = {
+        title: {
+          text: '文章标签',
+          left: 'left'
+        },
+        tooltip: {
+          trigger: 'item'
+        },
+        series: [
+          {
+            name: '文章数量',
+            type: 'pie',
+            radius: '50%',
+            data: this.chartDate['pags'],
+            emphasis: {
+              itemStyle: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: 'rgba(0, 0, 0, 0.5)'
+              }
+            }
+          }
+        ]
+      };
+      // 使用刚指定的配置项和数据显示图表。
+      myChart.setOption(option);
+      window.addEventListener('resize', () => {
+        myChart.resize()
+      })
+    },
+    drawArticle(){
+      let myChart = this.$echarts.init(document.getElementById("article_chart"));
+      let option = {
+        title: {
+          text: '',
+          left: 'center'
+        },
+        xAxis: {
+          type: 'category',
+          data: this.chartDate['articleTime'].time.reverse()
+        },
+        yAxis: {
+          type: 'value'
+        },
+        series: [
+          {
+            data: this.chartDate['articleTime'].value.reverse(),
+            type: 'line',
+            smooth: true
+          }
+        ]
+      };
+      // 使用刚指定的配置项和数据显示图表。
+      myChart.setOption(option);
+      window.addEventListener('resize', () => {
+        myChart.resize()
+      })
+    }
 
   }
 }
@@ -112,6 +198,12 @@ export default {
   width: 70%;
 }
 #category_chart {
+  height: 20em;
+}
+#pag_chart {
+  height: 20em;
+}
+#article_chart {
   height: 20em;
 }
 </style>
