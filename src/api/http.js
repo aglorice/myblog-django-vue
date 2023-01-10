@@ -137,5 +137,13 @@ export async function getFans(params){
         params: params,
     });
 }
+// 获取关于信息
+export async function getAbout(params){
+    return request({
+        url: '/api_remind/getremind/',
+        method: 'get',
+        params: params,
+    });
+}
 
 
