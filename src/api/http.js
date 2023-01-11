@@ -102,14 +102,7 @@ export async function getMusic(params){
     })
 }
 
-// 获取crsf
-export async function getToke(params){
-    return request({
-        url: '/api/getcsrftoken/',
-        method: 'get',
-        params: params,
-    });
-}
+
 
 // 提交友链申请
 export async function submitFriend(params){
@@ -146,4 +139,12 @@ export async function getAbout(params){
     });
 }
 
+// 获取最近文章的统计
+export async function getArticleTimeCount(params){
+    return request({
+        url: '/api_article/getArticleTimeCount/',
+        method: 'get',
+        params: params,
+    });
+}
 
