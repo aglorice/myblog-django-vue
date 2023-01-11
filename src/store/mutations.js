@@ -1,10 +1,7 @@
 
 const mutations = {
-    putArticle(state,value){
-        state.completeArticle = value
-    },
     putArticleInfo(state,value){
-        state.article = value
+        state.articleinfo = value
     },
 
     // 将首页的数据保存到vuex中
@@ -16,6 +13,9 @@ const mutations = {
     },
     putPag(state,value){
         state.pag = value
+    },
+    recentArticle(state,value){
+        state.recentArticle = value
     },
 }
 

@@ -1,7 +1,4 @@
 const actions = {
-    putarticle(content,value){
-        content.commit("putArticle",value)
-    },
     putarticleinfo(content, value) {
         content.commit("putArticleInfo",value)
     },
@@ -16,7 +13,10 @@ const actions = {
     // 提交标签信息到vuex
     put_pag(content, value){
         content.commit("putPag",value)
-    }
+    },
+    recentarticle(content, value){
+        content.commit("recentArticle",value)
+    },
 }
 
 export default actions
