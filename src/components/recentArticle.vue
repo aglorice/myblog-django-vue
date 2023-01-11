@@ -1,0 +1,82 @@
+<template>
+<div id="article_chart">
+
+</div>
+</template>
+
+<script>
+import {getArticleTimeCount} from "@/api/http";
+
+export default {
+  name: "recentArticle",
+  data(){
+    return{
+      recentarticletime:{}
+    }
+  },
+  mounted() {
+    this.getRecentArticle()
+  },
+  methods:{
+    getRecentArticle(){
+      // 最近的文章统计
+      if(this.$store.state.recentArticle.length > 0){
+        this.recentarticletime = this.$store.state.recentArticle
+        this.drawArticle()
+      }else{
+        getArticleTimeCount(null).then((res) => {
+          if (res.code === 200) {
+            // 将信息提交到vuex
+            this.recentarticletime = res['context']
+            this.drawArticle()
+            this.$store.dispatch('recentarticle',res['context'])
+
+          } else {
+            this.$message({
+              type: 'info',
+              message: '数据获取失败',
+              duration: 1500
+            });
+          }
+        }).catch((err) => {
+          console.log(err)
+        })
+      }
+    },
+    drawArticle(){
+      let myChart = this.$echarts.init(document.getElementById("article_chart"));
+      let option = {
+        title: {
+          text: '最近的文章篇数',
+          left: 'center'
+        },
+        xAxis: {
+          type: 'category',
+          data: this.recentarticletime.time.reverse()
+        },
+        yAxis: {
+          type: 'value'
+        },
+        series: [
+          {
+            data: this.recentarticletime.value.reverse(),
+            type: 'line',
+            smooth: true
+          }
+        ]
+      };
+      // 使用刚指定的配置项和数据显示图表。
+      myChart.setOption(option);
+      window.addEventListener('resize', () => {
+        myChart.resize()
+      })
+    }
+  }
+}
+</script>
+
+<style scoped lang="scss">
+#article_chart {
+  height: 20em;
+}
+</style>
