@@ -10,9 +10,15 @@
                     ref="preview">
       </v-md-preview>
       <div class="row">
-        <div class="col-md-12 col-lg-6" id="category_chart"></div>
-        <div class="col-md-12 col-lg-6" id="pag_chart"></div>
-        <div class="col-lg-12" id="article_chart"></div>
+        <div class="col-md-12 col-lg-6" >
+          <category-charts></category-charts>
+        </div>
+        <div class="col-md-12 col-lg-6" >
+          <pag-charts></pag-charts>
+        </div>
+        <div class="col-lg-12" >
+          <recent-article></recent-article>
+        </div>
       </div>
 
 
@@ -23,6 +29,9 @@
 
 <script>
 import {getAbout} from "@/api/http";
+import pagCharts from "@/components/pagCharts";
+import categoryCharts from "@/components/categoryCharts";
+import recentArticle from "@/components/recentArticle";
 
 export default {
   name: `about`,
@@ -33,11 +42,13 @@ export default {
       chartDate:{}
     }
   },
+  components:{
+    pagCharts,
+    categoryCharts,
+    recentArticle
+  },
   mounted() {
     this.getRemind(); // 获取个人简介
-    this.drawChartCategory();
-    this.drawChartPag();
-    this.drawArticle()
   },
 
   methods:{
@@ -57,99 +68,6 @@ export default {
         console.log(err)
       })
     },
-    drawChartCategory() {
-      // 基于准备好的dom，初始化echarts实例  这个和上面的main对应
-      let myChart = this.$echarts.init(document.getElementById("category_chart"));
-      // 指定图表的配置项和数据
-      let option = {
-        title: {
-          text: "文章分类",
-        },
-        tooltip: {},
-        legend: {
-          data: ["数量"],
-        },
-        xAxis: {
-          data: this.chartDate['categorys'].name,
-        },
-        yAxis: {},
-        series: [
-          {
-            name: "数量",
-            type: "bar",
-            data: this.chartDate['categorys'].value,
-          },
-        ],
-      };
-      // 使用刚指定的配置项和数据显示图表。
-      myChart.setOption(option);
-      window.addEventListener('resize', () => {
-        myChart.resize()
-      })
-    },
-    drawChartPag(){
-      // 基于准备好的dom，初始化echarts实例  这个和上面的main对应
-      let myChart = this.$echarts.init(document.getElementById("pag_chart"));
-      // 指定图表的配置项和数据
-      let option = {
-        title: {
-          text: '文章标签',
-          left: 'left'
-        },
-        tooltip: {
-          trigger: 'item'
-        },
-        series: [
-          {
-            name: '文章数量',
-            type: 'pie',
-            radius: '50%',
-            data: this.chartDate['pags'],
-            emphasis: {
-              itemStyle: {
-                shadowBlur: 10,
-                shadowOffsetX: 0,
-                shadowColor: 'rgba(0, 0, 0, 0.5)'
-              }
-            }
-          }
-        ]
-      };
-      // 使用刚指定的配置项和数据显示图表。
-      myChart.setOption(option);
-      window.addEventListener('resize', () => {
-        myChart.resize()
-      })
-    },
-    drawArticle(){
-      let myChart = this.$echarts.init(document.getElementById("article_chart"));
-      let option = {
-        title: {
-          text: '最近的文章篇数',
-          left: 'center'
-        },
-        xAxis: {
-          type: 'category',
-          data: this.chartDate['articleTime'].time.reverse()
-        },
-        yAxis: {
-          type: 'value'
-        },
-        series: [
-          {
-            data: this.chartDate['articleTime'].value.reverse(),
-            type: 'line',
-            smooth: true
-          }
-        ]
-      };
-      // 使用刚指定的配置项和数据显示图表。
-      myChart.setOption(option);
-      window.addEventListener('resize', () => {
-        myChart.resize()
-      })
-    }
-
   }
 }
 </script>
@@ -195,13 +113,7 @@ export default {
 
   width: 70%;
 }
-#category_chart {
-  height: 20em;
-}
-#pag_chart {
-  height: 20em;
-}
-#article_chart {
-  height: 20em;
-}
+
+
+
 </style>
