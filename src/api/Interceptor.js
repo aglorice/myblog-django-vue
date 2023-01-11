@@ -11,9 +11,7 @@ const http=  axios.create({
 
 //拦截器  -请求拦截
 http.interceptors.request.use(config=>{
-    if (localStorage.getItem("csrf_token") && config.method === 'post'){
-        config.headers['X-CSRFToken'] = localStorage.getItem("csrf_token")
-    }
+
     return config;
 },err=>{
     return Promise.reject(err)
