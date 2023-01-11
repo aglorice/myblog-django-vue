@@ -113,7 +113,6 @@ export default {
           });
           let data = res['context']
           // 提交原始的的文章数据
-          this.$store.dispatch('putoriginalarticles', data)
           let completeArticle = []
           for (let item in data) {
             completeArticle.push({

@@ -34,7 +34,9 @@ export default {
         getCountPag(null).then((res) => {
           if (res.code === 200) {
             this.echartsData= res['context']
+            this.$store.dispatch('put_pag', this.echartsData)
             this.initChart(this);
+
             // 将信息提交到vuex
           } else {
             this.$message({

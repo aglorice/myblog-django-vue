@@ -92,7 +92,7 @@
 </template>
 
 <script>
-import {getFriend, getToke, submitFriend} from "@/api/http";
+import {getFriend, submitFriend} from "@/api/http";
 
 export default {
   name: `friend`,
@@ -117,7 +117,6 @@ export default {
     }
   },
   mounted() {
-    this.getcrsf()
     this.getfriend()
   },
   methods:{
@@ -172,23 +171,6 @@ export default {
     },
 
     // 获取token
-    getcrsf(){
-      getToke(null).then((res) => {
-        console.log(res)
-        if (res.code === 200) {
-          let data = res['csrf_token']
-          localStorage.setItem("csrf_token", data)
-        } else {
-          this.$message({
-            type: 'info',
-            message: '数据获取失败',
-            duration: 1500
-          });
-        }
-      }).catch((err) => {
-        console.log(err)
-      })
-    },
     //复制成功的回调
     handleCopyCodeSuccess(){
       this.$notify({

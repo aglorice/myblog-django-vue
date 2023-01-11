@@ -32,13 +32,12 @@ export default {
     // 请求pag的数据
     getCountpag(){
       if(this.$store.state.pag.length > 0){
-        this.echartsData= this.$store.state.pag
+        this.tags= this.$store.state.pag
       }else {
         getCountPag(null).then((res) => {
           if (res.code === 200) {
             this.tags = res['context']
             // 将信息提交到vuex
-            console.log(this.tags)
             this.$store.dispatch('put_pag', this.tags)
           } else {
             this.$message({

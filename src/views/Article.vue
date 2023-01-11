@@ -76,7 +76,7 @@ export default {
   },
   mounted() {
     // 获取文章数量
-    this.pagecount = this.$store.state.article.count
+    this.pagecount = this.$store.state.articleinfo.count
     // 如果vuex中有数据就直接用,没有则重新请求
     this.handleCurrentChange(1)
   },
