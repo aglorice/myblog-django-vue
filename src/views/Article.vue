@@ -7,7 +7,7 @@
       <div class="container-body-articles">
         <div class="container-body-article" v-for="(value,index) in articles" :key="index">
           <div class="container-body-article-cover">
-            <router-link :to="`/article/details/${value.id}`"><img   :src="value.imgsrc" alt=""></router-link>
+            <router-link :to="`/article/details/${value.id}`"><img   v-lazy="value.imgsrc" alt=""></router-link>
           </div>
           <!--              文章简介-->
           <div class="container-body-article-body">
@@ -68,13 +68,14 @@ export default {
   name: `Article`,
   data(){
     return{
-      articles:this.$store.state.completeArticle[1],
+      articles:this.$store.state.Article,
       currentPage: 1, //  el-pagination 初始页
       pagesize: 10 ,//  el-pagination 每页的数据
       pagecount:0
     }
   },
   mounted() {
+    // 获取文章数量
     this.pagecount = this.$store.state.article.count
     // 如果vuex中有数据就直接用,没有则重新请求
     this.handleCurrentChange(1)
@@ -88,8 +89,9 @@ export default {
     },
     handleCurrentChange: function(currentPage) {
       document.documentElement.scrollTop = 0;
-      if(this.$store.state.completeArticle[currentPage].length > 0){
-        this.articles = this.$store.state.completeArticle[currentPage]
+      //
+      if(this.$store.state.Article.length > 0 && currentPage == 1){
+        this.articles = this.$store.state.Article
       }else {
         this.currentPage = currentPage
         const params = {
@@ -232,6 +234,9 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+  i {
+    margin-right: 0.5em;
+  }
 }
 .split-line {
   p {

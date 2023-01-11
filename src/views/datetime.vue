@@ -31,7 +31,6 @@
 </template>
 
 <script>
-import {datetime} from "@/utils/datetime";
 
 export default {
   name: `datetime`,
@@ -41,7 +40,7 @@ export default {
     }
   },
   mounted() {
-    this.datetimeArticle = datetime(this.$store.state.OriginalArticles)
+
 
   },
   methods:{
@@ -64,7 +63,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-image: url("@/assets/img/backgound-img/index.png");
+  background-image: url("@/assets/img/backgound-img/filetime.png");
   background-position: center center;
   /* 背景图不平铺 */
   background-repeat: no-repeat;

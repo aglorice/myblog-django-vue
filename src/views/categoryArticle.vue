@@ -25,7 +25,7 @@
 
 <script>
 
-import {article_type} from "@/utils/category_type";
+
 
 export default {
   name: `categoryArticle`,
@@ -38,9 +38,7 @@ export default {
     this.articleType()
   },
   methods:{
-    articleType(){
-      this.category = article_type(this.$store.state.OriginalArticles,this.$route.params.category,'categorize')
-    }
+
   }
 
 }

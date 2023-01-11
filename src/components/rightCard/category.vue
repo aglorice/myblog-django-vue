@@ -11,6 +11,7 @@
           <span>{{value.name}}</span>
           <p>{{value.value}}</p>
         </li>
+        <router-link v-if="category.length > 4" to="/categorize">更多...</router-link>
       </ul>
     </div>
   </el-card>
@@ -35,21 +36,28 @@ export default {
       this.$router.push(`/article/category/${type_name}`)
     },
     getcountcategorize(){
-      getCountCategorize(null).then((res) => {
-        if (res.code === 200) {
-          this.category= res['context']
-          this.initChart();
-          // 将信息提交到vuex
-        } else {
-          this.$message({
-            type: 'info',
-            message: '数据获取失败',
-            duration: 1500
-          });
-        }
-      }).catch((err) => {
-        console.log(err)
-      })
+      // 判断vuex中是否有数据
+      if(this.$store.state.category.length > 0){
+        this.category= this.$store.state.category
+      }else {
+        getCountCategorize(null).then((res) => {
+          if (res.code === 200) {
+            this.category= res['context']
+            // 将信息提交到vuex
+            this.$store.dispatch('put_category',this.category)
+
+          } else {
+            this.$message({
+              type: 'info',
+              message: '数据获取失败',
+              duration: 1500
+            });
+          }
+        }).catch((err) => {
+          console.log(err)
+        })
+      }
+
     },
   }
 }

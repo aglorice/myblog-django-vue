@@ -99,9 +99,8 @@ export default {
         font-size: 1.5em;
         height: 1.5em;
         @include font_color("font_color1");
-        img {
-          width: 1.2em;
-          margin-right: 5px;
+        i {
+          margin-right: 0.5em;
         }
       }
     }

@@ -5,14 +5,18 @@ const actions = {
     putarticleinfo(content, value) {
         content.commit("putArticleInfo",value)
     },
-    modifypageview(content, value){
-
-        content.commit("modifyPageView",value)
+    // 提交首页的文章数据
+    put_start_articles(content, value){
+        content.commit("putStartArticles",value)
     },
-    // 提交原始的文章数据
-    putoriginalarticles(content, value){
-        content.commit("putOriginalArticles",value)
+    // 提交分类信息到vuex
+    put_category(content, value){
+        content.commit("putCategory",value)
     },
+    // 提交标签信息到vuex
+    put_pag(content, value){
+        content.commit("putPag",value)
+    }
 }
 
 export default actions

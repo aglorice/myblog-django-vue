@@ -36,20 +36,26 @@ export default {
   },
   methods: {
     getcountcategorize() {
-      getCountCategorize(null).then((res) => {
-        if (res.code === 200) {
-          this.echartsData = res['context']
-          // 将信息提交到vuex
-        } else {
-          this.$message({
-            type: 'info',
-            message: '数据获取失败',
-            duration: 1500
-          });
-        }
-      }).catch((err) => {
-        console.log(err)
-      })
+      if(this.$store.state.category.length > 0){
+        this.echartsData= this.$store.state.category
+      }else{
+        getCountCategorize(null).then((res) => {
+          if (res.code === 200) {
+            this.echartsData = res['context']
+            // 将信息提交到vuex
+            this.$store.dispatch('put_category',this.echartsData)
+          } else {
+            this.$message({
+              type: 'info',
+              message: '数据获取失败',
+              duration: 1500
+            });
+          }
+        }).catch((err) => {
+          console.log(err)
+        })
+      }
+
     },
   }
 }
@@ -70,7 +76,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-image: url("@/assets/img/backgound-img/index.png");
+  background-image: url("@/assets/img/backgound-img/category.png");
   background-position: center center;
   /* 背景图不平铺 */
   background-repeat: no-repeat;

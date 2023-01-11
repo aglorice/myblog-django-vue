@@ -11,7 +11,7 @@
                  v-for="(value) in fansData" :key="value.media_id">
           <a style="text-decoration: none" :href="value.url">
             <div slot="header" class="clearfix">
-              <img :src="value.cover" :alt="value.title" referrerPolicy="no-referrer">
+              <img v-lazy="value.cover" :alt="value.title" referrerPolicy="no-referrer">
             </div>
             <div class="box-card-body">
               <h5>{{value.title}}</h5>

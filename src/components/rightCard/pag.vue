@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import {getPag} from "@/api/http";
+import {getCountPag} from "@/api/http";
 
 export default {
   name: `pag`,
@@ -26,13 +26,20 @@ export default {
     }
   },
   mounted() {
-    this.getpag() // 获取标签数据
+    this.getCountpag() // 获取标签数据
   },
   methods:{
-    getpag(){
-      getPag(null).then((res) => {
+    // 请求pag的数据
+    getCountpag(){
+      if(this.$store.state.pag.length > 0){
+        this.echartsData= this.$store.state.pag
+      }else {
+        getCountPag(null).then((res) => {
           if (res.code === 200) {
             this.tags = res['context']
+            // 将信息提交到vuex
+            console.log(this.tags)
+            this.$store.dispatch('put_pag', this.tags)
           } else {
             this.$message({
               type: 'info',
@@ -43,6 +50,7 @@ export default {
         }).catch((err) => {
           console.log(err)
         })
+      }
     },
     // 随机生成标签颜色
     RandomColor() {

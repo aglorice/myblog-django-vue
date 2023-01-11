@@ -179,12 +179,8 @@ export default {
         font-size: 1.1em;
         @include font_color("font_color1");
         text-decoration: none;
-        img {
-          width: 0.8em;
-          height: 0.8em;
-          color: #66797c;
-          margin-right: 5px;
-
+        i {
+          margin-right: 0.5em;
         }
         &:hover {
           color: skyblue;

@@ -23,7 +23,6 @@
 
 <script>
 import {getAbout} from "@/api/http";
-import transChartsDate from "@/utils/chartsArticle";
 
 export default {
   name: `about`,
@@ -35,8 +34,7 @@ export default {
     }
   },
   mounted() {
-    this.chartDate = transChartsDate(this.$store.state.OriginalArticles)
-    this.getRemind();
+    this.getRemind(); // 获取个人简介
     this.drawChartCategory();
     this.drawChartPag();
     this.drawArticle()
@@ -127,7 +125,7 @@ export default {
       let myChart = this.$echarts.init(document.getElementById("article_chart"));
       let option = {
         title: {
-          text: '',
+          text: '最近的文章篇数',
           left: 'center'
         },
         xAxis: {

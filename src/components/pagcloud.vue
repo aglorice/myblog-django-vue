@@ -26,21 +26,28 @@ export default {
   methods: {
     // 请求pag的数据
     getCountpag(){
-      getCountPag(null).then((res) => {
-        if (res.code === 200) {
-          this.echartsData= res['context']
-          this.initChart(this);
-          // 将信息提交到vuex
-        } else {
-          this.$message({
-            type: 'info',
-            message: '数据获取失败',
-            duration: 1500
-          });
-        }
-      }).catch((err) => {
-        console.log(err)
-      })
+      // 判断vuex中是否有数据没有则重新请求
+      if(this.$store.state.pag.length > 0){
+        this.echartsData= this.$store.state.pag
+        this.initChart(this);
+      }else {
+        getCountPag(null).then((res) => {
+          if (res.code === 200) {
+            this.echartsData= res['context']
+            this.initChart(this);
+            // 将信息提交到vuex
+          } else {
+            this.$message({
+              type: 'info',
+              message: '数据获取失败',
+              duration: 1500
+            });
+          }
+        }).catch((err) => {
+          console.log(err)
+        })
+      }
+
     },
 
     initChart(_this) {

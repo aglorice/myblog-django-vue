@@ -28,6 +28,14 @@ import hljs from 'highlight.js';
 //echarts
 import { LegendComponent } from 'echarts/components';
 import * as echarts from "echarts";
+// 懒加载
+import VueLazyLoad from 'vue-lazyload'; // 导入懒加载
+Vue.use(VueLazyLoad,{
+  error:require('./assets/img/icon/404.gif'), // 加载错误时的图片
+  loading:require('./assets/img/icon/loading.gif') // 加载时的时图片
+});
+
+
 Vue.prototype.$echarts = echarts;
 
 echarts.use([LegendComponent]);

@@ -25,9 +25,9 @@
       <div class="row container-body-all">
         <div class="col-md-9 col-sm-12">
           <div class="container-body-articles">
-            <div class="container-body-article" v-for="(value,index) in articles[1]" :key="index">
+            <div class="container-body-article" v-for="(value,index) in articles" :key="index">
               <div class="container-body-article-cover">
-                <router-link  :to="`/article/details/${value.id}`"><img   :src="value.imgsrc" alt=""></router-link>
+                <router-link  :to="`/article/details/${value.id}`"><img   v-lazy="value.imgsrc"  alt=""></router-link>
               </div>
 <!--              文章简介-->
               <div class="container-body-article-body">
@@ -100,7 +100,6 @@ export default {
     category
   },
   computed:{
-
   },
   mounted() {
 
@@ -286,6 +285,9 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+  i {
+    margin-right: 0.5em;
+  }
 }
 .split-line {
   p {

@@ -13,7 +13,7 @@
       <navigation></navigation>
       <transition :name="transitionName" mode="out-in">
         <keep-alive include="index,Article,category,pag,about,Talking,friend">
-          <router-view :articles="completeArticles"></router-view>
+          <router-view :articles="Articles"></router-view>
         </keep-alive>
       </transition>
     </div>
@@ -40,7 +40,7 @@ export default {
   data(){
     return{
       screenWidth: 749, // 屏幕宽度
-      completeArticles:[], // 完整的文章
+      Articles:[], // 首页文章
       isRenderStart:false,  // 是否开始渲染子组件
       transitionName:'slide-left'
     }
@@ -57,7 +57,7 @@ export default {
     this.consoleFz()
     // 初始化主题
     window.document.documentElement.setAttribute("data-theme", 'day');
-    // 获取文章信息
+    // 获取文章信息(前10个)
     this.getarticle()
   },
   created() {
@@ -111,41 +111,25 @@ export default {
             type: 'success',
             duration: 1500
           });
-          let articleSum = 0;
-          let article = {};
-
           let data = res['context']
           // 提交原始的的文章数据
           this.$store.dispatch('putoriginalarticles', data)
-          let page_count = res['count']
           let completeArticle = []
-          let completeArticleAll = {}
-          for (let i = 1; i <= page_count; i++) {
-            for (let item in data[i]) {
-              completeArticle.push({
-                id: data[i][item]['id'],
-                title: data[i][item]['title'],
-                datetime: data[i][item]['created_time'],
-                category: data[i][item]['categorize'],
-                Pageview: data[i][item]['page_view'],
-                content: data[i][item]['describe'],
-                imgsrc: variable.base_url_img + data[i][item]['head_img']
-              })
-            }
-            completeArticleAll[i] = completeArticle
-            // 计算文章总数
-            articleSum = articleSum+completeArticleAll[i].length
-
-            completeArticle = []
+          for (let item in data) {
+            completeArticle.push({
+              id: data[item]['id'],
+              title: data[item]['title'],
+              datetime: data[item]['created_time'],
+              category: data[item]['categorize'],
+              Pageview: data[item]['page_view'],
+              content: data[item]['describe'],
+              imgsrc: variable.base_url_img + data[item]['head_img']
+            })
           }
+          this.Articles = completeArticle
 
-          this.completeArticles = completeArticleAll
           // 将信息提交到vuex
-          this.$store.dispatch('putarticle', completeArticleAll)
-          article = {
-            count:articleSum
-          }
-          this.$store.dispatch('putarticleinfo',article)
+          this.$store.dispatch('put_start_articles',completeArticle)
           // 关闭loading
           this.isRenderStart = true
 

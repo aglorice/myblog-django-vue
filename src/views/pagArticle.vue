@@ -25,7 +25,7 @@
 
 <script>
 
-import {article_type} from "@/utils/category_type";
+
 
 export default {
   name: `pagArticle`,
@@ -38,10 +38,7 @@ export default {
     this.articleType()
   },
   methods:{
-    articleType(){
-      this.pag = article_type(this.$store.state.OriginalArticles,this.$route.params.pag,'pag')
-      console.log(this.pag)
-    }
+
   }
 
 }
