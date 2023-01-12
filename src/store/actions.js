@@ -17,6 +17,10 @@ const actions = {
     recentarticle(content, value){
         content.commit("recentArticle",value)
     },
+    putpagecount(content, value){
+        content.commit("putPageCount",value)
+    },
+
 }
 
 export default actions

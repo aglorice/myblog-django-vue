@@ -17,6 +17,9 @@ const mutations = {
     recentArticle(state,value){
         state.recentArticle = value
     },
+    putPageCount(state,value){
+        state.pagecount = value
+    },
 }
 
  export default mutations
