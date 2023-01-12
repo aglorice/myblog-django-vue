@@ -71,7 +71,7 @@ export default {
       articles:this.$store.state.Article,
       currentPage: 1, //  el-pagination 初始页
       pagesize: 10 ,//  el-pagination 每页的数据
-      pagecount:0
+      pagecount:this.$store.state.pagecount
     }
   },
   mounted() {

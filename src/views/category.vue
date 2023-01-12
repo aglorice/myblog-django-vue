@@ -6,6 +6,7 @@
     <div class="category_list">
       <h4>文章分类</h4>
       <p>目前共计{{echartsData.length}}个分类</p>
+      <el-skeleton class="loading" v-show="loading" :rows="6" animated :throttle="500" />
       <ul class="category_list_item" v-for="(category_item) in echartsData" :key="category_item.name">
         <li>
           <router-link :to="`/article/category/${category_item.name}/`">{{category_item.name}}</router-link>
@@ -25,7 +26,8 @@ export default {
   name: `category`,
   data(){
     return{
-      echartsData:0
+      echartsData:0,
+      loading:true
     }
   },
   components:{
@@ -38,10 +40,12 @@ export default {
     getcountcategorize() {
       if(this.$store.state.category.length > 0){
         this.echartsData= this.$store.state.category
+        this.loading = false
       }else{
         getCountCategorize(null).then((res) => {
           if (res.code === 200) {
             this.echartsData = res['context']
+            this.loading = false
             // 将信息提交到vuex
             this.$store.dispatch('put_category',this.echartsData)
           } else {
@@ -67,6 +71,9 @@ export default {
 @media (max-width: 750px) {
   .category_list_item {
     width: 90%!important;
+  }
+  .loading {
+    width: 90% !important;
   }
 }
 .container_head {
@@ -129,5 +136,9 @@ export default {
 
 
   width: 70%;
+}
+.loading {
+  height: 20em!important;
+  width: 70% !important;
 }
 </style>

@@ -129,6 +129,7 @@ export default {
 
           // 将信息提交到vuex
           this.$store.dispatch('put_start_articles',completeArticle)
+          this.$store.dispatch('putpagecount',res['count'])
           // 关闭loading
           this.isRenderStart = true
 

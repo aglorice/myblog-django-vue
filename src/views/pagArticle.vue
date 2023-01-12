@@ -27,6 +27,8 @@
 
 
 
+import {getPagArticle} from "@/api/http";
+
 export default {
   name: `pagArticle`,
   data(){
@@ -35,10 +37,28 @@ export default {
     }
   },
   mounted() {
-    this.articleType()
+    document.documentElement.scrollTop = 0;
+    this.getpagarticle()
   },
   methods:{
-
+    getpagarticle(){
+      let params = {
+        pag:this.$route.params.pag
+      }
+      getPagArticle(params).then((res) => {
+        if (res.code === 200) {
+          this.pag = res['context']
+        } else {
+          this.$message({
+            type: 'info',
+            message: '数据获取失败',
+            duration: 1500
+          });
+        }
+      }).catch((err) => {
+        console.log(err)
+      })
+    }
   }
 
 }

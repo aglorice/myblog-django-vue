@@ -1,6 +1,7 @@
 <template>
   <div class="wordCloudPag">
     <div class="wordCloudPagBorder">
+      <el-skeleton class="loading" v-show="loading" :rows="7" animated :throttle="500" />
       <div id="wordCloudPag" ></div>
     </div>
 
@@ -16,7 +17,8 @@ export default {
   name:`pagcloud`,
   data() {
     return {
-      echartsData: []
+      echartsData: [],
+      loading:true
     };
   },
   mounted() {
@@ -30,12 +32,14 @@ export default {
       if(this.$store.state.pag.length > 0){
         this.echartsData= this.$store.state.pag
         this.initChart(this);
+        this.loading = false
       }else {
         getCountPag(null).then((res) => {
           if (res.code === 200) {
             this.echartsData= res['context']
             this.$store.dispatch('put_pag', this.echartsData)
             this.initChart(this);
+            this.loading = false
 
             // 将信息提交到vuex
           } else {
@@ -129,6 +133,10 @@ export default {
   @include background_color("background_color1");
 
 }
+.loading {
+  width: 100% !important;
+  height: 40vh !important;
+}
 .wordCloudPag {
   @include background_color("background_color1");
   width: 100vw;
@@ -139,6 +147,7 @@ export default {
   align-items: center;
 }
 .wordCloudPagBorder {
+  margin-top: 20px;
   width: 70%;
   overflow: hidden;
   border-radius: 10px;

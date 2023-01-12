@@ -27,6 +27,8 @@
 
 
 
+import {getCategoryArticle} from "@/api/http";
+
 export default {
   name: `categoryArticle`,
   data(){
@@ -35,10 +37,28 @@ export default {
     }
   },
   mounted() {
-    this.articleType()
+    document.documentElement.scrollTop = 0;
+    this.getcategoryarticle()
   },
   methods:{
-
+    getcategoryarticle() {
+      let params = {
+        category:this.$route.params.category
+      }
+      getCategoryArticle(params).then((res) => {
+        if (res.code === 200) {
+          this.category = res['context']
+        } else {
+          this.$message({
+            type: 'info',
+            message: '数据获取失败',
+            duration: 1500
+          });
+        }
+      }).catch((err) => {
+        console.log(err)
+      })
+    }
   }
 
 }

@@ -32,6 +32,8 @@
 
 <script>
 
+import {getArticleFiletime} from "@/api/http";
+
 export default {
   name: `datetime`,
   data(){
@@ -40,10 +42,25 @@ export default {
     }
   },
   mounted() {
-
+    this.getarticlefiletime()
 
   },
   methods:{
+    getarticlefiletime(){
+      getArticleFiletime(null).then((res) => {
+        if (res.code === 200) {
+          this.datetimeArticle = res['context']
+        } else {
+          this.$message({
+            type: 'info',
+            message: '数据获取失败',
+            duration: 1500
+          });
+        }
+      }).catch((err) => {
+        console.log(err)
+      })
+    }
   }
 }
 </script >

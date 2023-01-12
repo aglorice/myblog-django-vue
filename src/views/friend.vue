@@ -9,6 +9,7 @@
                     @copy-code-success="handleCopyCodeSuccess">
       </v-md-preview>
       <h3>友人帐</h3>
+      <el-skeleton class="loading" v-show="loading" :rows="6" animated :throttle="500" />
       <div class="row friends">
         <div v-for="(value,index) in friends" :key="index"  class="friend col-md-4 col-sm-6 col-xs-12 ">
           <div  class=" friends_item">
@@ -196,6 +197,9 @@ export default {
   .add_friend {
     width: 90% !important;
   }
+  .loading {
+    width: 90% !important;
+  }
 }
 .container_head {
   width: 100vw;
@@ -291,6 +295,10 @@ h1 {
 .submit {
   text-align: center;
   margin-bottom: 20px;
+}
+.loading {
+  height: 20em;
+  width: 70% !important;
 }
 
 </style>

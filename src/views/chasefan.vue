@@ -6,6 +6,7 @@
 
   <div class="fans_all">
     <h1 >追番列表</h1>
+    <el-skeleton class="loading" v-show="loading" :rows="6" animated :throttle="500" />
     <div class="fans row">
         <el-card class="fans-item box-card container-body-card col-xs-6  col-md-4 col-lg-3"
                  v-for="(value) in fansData" :key="value.media_id">
@@ -32,7 +33,8 @@ export default {
   name: `chasefan`,
   data(){
     return{
-      fansData:''
+      fansData:'',
+      loading:true
     }
   },
   mounted() {
@@ -61,6 +63,8 @@ export default {
         if (res.code === 200) {
           let data = res['context']['data']['list']
           this.fansData = data
+          this.loading = false
+
           // 将信息提交到vuex
         } else {
           this.$message({
@@ -83,6 +87,9 @@ export default {
 @media (max-width: 750px) {
   .fans{
     width: 80%!important;
+  }
+  .loading {
+    width: 80% !important;
   }
 }
 .clearfix {
@@ -163,6 +170,10 @@ export default {
     font-weight: lighter;
     text-align: center;
   }
+}
+.loading {
+  width: 70%!important;
+  height: 20em!important;
 }
 
 </style>
