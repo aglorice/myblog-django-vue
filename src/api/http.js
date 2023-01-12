@@ -147,4 +147,29 @@ export async function getArticleTimeCount(params){
         params: params,
     });
 }
+// 根据标签获取文章
+export async function getPagArticle(params){
+    return request({
+        url: '/api_article/getpagacticle/',
+        method: 'get',
+        params: params,
+    });
+}
 
+// 根据分类获取文章
+export async function getCategoryArticle(params){
+    return request({
+        url: '/api_article/getcategoryarticle/',
+        method: 'get',
+        params: params,
+    });
+}
+
+// 获取文章归档
+export async function getArticleFiletime(params){
+    return request({
+        url: '/api_article/getarticlefiletime/',
+        method: 'get',
+        params: params,
+    });
+}
