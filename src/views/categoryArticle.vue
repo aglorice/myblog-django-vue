@@ -7,6 +7,7 @@
   <div class="container_body">
     <h4>一共发现了{{category.length}}篇文章</h4>
     <div class="category_type">
+      <el-skeleton class="loading" v-show="loading" :rows="10" animated :throttle="500" />
       <el-timeline>
         <el-timeline-item v-for="(value) in category"
                           :timestamp="value.created_time"
@@ -33,7 +34,8 @@ export default {
   name: `categoryArticle`,
   data(){
     return{
-      category:[]
+      category:[],
+      loading:true
     }
   },
   mounted() {
@@ -48,6 +50,7 @@ export default {
       getCategoryArticle(params).then((res) => {
         if (res.code === 200) {
           this.category = res['context']
+          this.loading = false
         } else {
           this.$message({
             type: 'info',
@@ -68,6 +71,9 @@ export default {
 @import "@/assets/scss/_handle.scss";
 @media (max-width: 750px) {
   .category_type {
+    width: 90% !important;
+  }
+  .loading {
     width: 90% !important;
   }
 }
@@ -111,5 +117,9 @@ export default {
 .category_type {
   margin-top: 20px;
   width: 70%;
+}
+.loading {
+  width: 70%;
+  height: 20em;
 }
 </style>

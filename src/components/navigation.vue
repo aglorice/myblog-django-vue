@@ -43,7 +43,6 @@
         </ul>
       </div>
       <div class="navigation_footer">
-        <img id="navigation_search" class="navigation_search" src="@/assets/img/icon/search.png" alt="">
         <img id="navigation_meum" class="navigation_meum"  src="@/assets/img/icon/meum.png" alt="" @click="openMeum">
       </div>
     </div>

@@ -4,15 +4,15 @@
   <div class="page_bottom_dance">
     <img src="@/assets/img/backgound-img/dance.png" alt="没有未来的未来不是我要的未来">
   </div>
-  <div class="copyright">
-    <span> Copyright © 2020-{{getYear}} by <a :href="href">aglorice</a>. All Rights Reserved. </span>
-  </div>
+<!--  <div class="copyright">-->
+<!--    <span> Copyright © 2020-{{getYear}} by <a :href="href">aglorice</a>. All Rights Reserved. </span>-->
+<!--  </div>-->
 
-  <div class="record_number">
-    <span>萌-123123123123</span>
-    <el-divider direction="vertical"></el-divider>
-    <span>萌-123123123123</span>
-  </div>
+<!--  <div class="record_number">-->
+<!--    <span>萌-123123123123</span>-->
+<!--    <el-divider direction="vertical"></el-divider>-->
+<!--    <span>萌-123123123123</span>-->
+<!--  </div>-->
   <div class="website_time">
     <p id="sitetime"></p>
   </div>

@@ -37,6 +37,7 @@
 <!--      <a style="cursor: pointer">{{ anchor.title }}{{anchor.indent}}</a>-->
 <!--    </div>-->
     <div class="row detailarticle-body">
+      <el-skeleton class="loading" v-show="loading" :rows="15" animated :throttle="500" />
       <v-md-preview class="detailarticle-body-main col-md-9 col-sm-12 "
                     v-if="!loading"
                     :text="articles.article"
@@ -188,6 +189,9 @@ export default {
   .list_tree {
     display: none;
   }
+  .loading {
+    width: 90% !important;
+  }
 }
 .container_head {
   width: 100vw;
@@ -273,6 +277,10 @@ export default {
 .detailarticle-body {
   width: 90%;
 
+}
+.loading {
+  height: 60vh;
+  width: 90%;
 }
 .detailarticle-body-main {
   position: relative;

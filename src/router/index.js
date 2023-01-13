@@ -34,7 +34,7 @@ const routes = [
         path: '/index',
         component:Home,
         meta:{
-            title:'主页'
+            title:'前端小窝'
         }
     },
     {
@@ -48,14 +48,14 @@ const routes = [
         path: '/article/category/:category',
         component: categoryArticle,
         meta:{
-            title:'文章|前端小'
+            title:'文章|前端小窝'
         },
     },
     {
         path: '/article/pag/:pag',
         component: pagArticle,
         meta:{
-            title:'文章|前端'
+            title:'文章|前端小窝'
         },
     },
     {
@@ -71,42 +71,42 @@ const routes = [
         component:Categorize,
 
         meta:{
-            title:'分类'
+            title:'分类|前端小窝'
         }
     },
     {
         path: '/pag',
         component:Pag,
         meta:{
-            title:'标签'
+            title:'标签|前端小窝'
         }
     },
     {
         path: '/datetime',
         component:dateTime,
         meta: {
-            title: '归档'
+            title: '归档|前端小窝'
         }
     },
     {
         path: '/friend',
         component:friend,
         meta: {
-            title: '友人帐'
+            title: '友人帐|前端小窝'
         }
     },
     {
         path: '/about',
         component:Remind,
         meta:{
-            title:'关于'
+            title:'关于|前端小窝'
         }
     },
     {
         path: '/chasefan',
         component:ChaseFan,
         meta: {
-            title: '追番'
+            title: '追番|前端小窝'
         }
     },
 ]

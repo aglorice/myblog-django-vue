@@ -1,7 +1,7 @@
 
 const variable = {
-    base_url : 'http://localhost:8000',
+    base_url : 'http://127.0.0.1:8000', // https://www.aglorice.cn
     base_url_img : '',
-    websiteDatetime:'2022-12-1' // 网站开始运行的时间
+    websiteDatetime:'2022-1-12' // 网站开始运行的时间
 }
 export  default variable

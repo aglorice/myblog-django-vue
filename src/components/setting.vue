@@ -79,24 +79,29 @@ export default {
 .settings {
   width: 40px;
   height: 80px ;
-  background-color: #DD1C1C;
+  background-color: #66797c;
   right: 5px;
   transition: 0.8s;
   bottom: 200px;
   position: fixed;
   float: right;
+  @include box_shadow("box_shadow_color1");
+  border-radius: 10px;
+
   z-index: 99;
 }
 .backUp {
   img {
-    width: 40px;
+    width: 30px;
     height: auto;
+    margin: 5px;
   }
 }
 .change_themes {
   img {
-    width: 40px;
+    width: 30px;
     height: auto;
+    margin: 5px;
   }
 }
 </style>

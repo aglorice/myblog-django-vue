@@ -5,8 +5,9 @@
       <h4>{{this.$route.params.pag}}</h4>
     </div>
     <div class="container_body">
-
+      <el-skeleton class="loading" v-show="loading" :rows="10" animated :throttle="500" />
       <div class="category_type">
+
         <el-timeline>
           <el-timeline-item v-for="(value) in pag"
                             :timestamp="value.created_time"
@@ -33,7 +34,8 @@ export default {
   name: `pagArticle`,
   data(){
     return{
-      pag:[]
+      pag:[],
+      loading:true
     }
   },
   mounted() {
@@ -48,6 +50,7 @@ export default {
       getPagArticle(params).then((res) => {
         if (res.code === 200) {
           this.pag = res['context']
+          this.loading = false;
         } else {
           this.$message({
             type: 'info',
@@ -68,6 +71,9 @@ export default {
 @import "@/assets/scss/_handle.scss";
 @media (max-width: 750px) {
   .category_type {
+    width: 90% !important;
+  }
+  .loading {
     width: 90% !important;
   }
 }
@@ -111,5 +117,9 @@ export default {
 .category_type {
   margin-top: 20px;
   width: 70%;
+}
+.loading {
+  width: 70%;
+  height: 20em;
 }
 </style>

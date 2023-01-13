@@ -8,9 +8,8 @@
       <el-tag class="tag"
               :type="RandomColor()"
               v-for="(value,index) in tags"
-              :key="index"
-
-      >{{value.name}}</el-tag>
+              :key="index">
+        <router-link :to="`/article/pag/${value.name}`">{{value.name}} </router-link></el-tag>
     </div>
   </el-card>
 </template>
