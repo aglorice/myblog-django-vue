@@ -43,12 +43,32 @@
                     :text="articles.article"
                     ref="preview"
                     @copy-code-success="handleCopyCodeSuccess">
+
       </v-md-preview>
+
       <div class="list_tree col-md-3">
         <listtree :listtree="new_listtree" @handleAnchorClick="handleAnchorClick"></listtree>
       </div>
+      <div class="article_share_info col-md-9 col-sm-12" v-if="rederShare">
+        <p><span>文章标题：</span>{{articles.title?articles.title:'四月是你的谎言'}}</p>
+        <p><span>文章作者：</span>aglorice</p>
+        <p><span>发布时间：</span>{{articles.datetime?articles.datetime:'????'}}</p>
+        <p><span>原始链接：</span>
+          <router-link class="container-body-article-router-link" :to="selfWbsite+'/article/details/'+id">
+            {{selfWbsite}}/article/details/{{id}}
+          </router-link>
+        </p>
+        <p><span>版权声明：</span>
+          本网站发表的全部原创内容（不仅限于文章、图片），著作权均归其发表者所有，均采用
+          <a href="https://creativecommons.org/licenses/by-nc/4.0/deed.zh" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0 CN</a>
+          许可协议。转载请注明作者以及原文链接，商业授权请联系作者。
+        </p>
+      </div>
     </div>
+
+
     <mobileArticleMenus :listtree="new_listtree" @handleAnchorClick="handleAnchorClick"></mobileArticleMenus>
+
   </div>
 
 </template>
@@ -57,6 +77,7 @@
 import {getDetailArticle} from "@/api/http";
 import variable from "@/assets/js/variable";
 import listtree from "@/components/rightCard/listtree";
+
 import {transListToTreeData} from "@/utils/transListToTreeData";
 import mobileArticleMenus from "@/components/mobile-article-menus";
 
@@ -68,7 +89,9 @@ export default {
       loading:true,
       titles:[],
       new_listtree:'',
-      listref:''
+      listref:'',
+      selfWbsite: variable.selfWbsite,
+      rederShare:false // 文章分享的状态
     }
   },
   components:{
@@ -138,7 +161,6 @@ export default {
     getdetailarticle(params){
       getDetailArticle(params).then((res) => {
         if (res.code === 200) {
-          this.$store.dispatch('modifypageview',this.id)
           let data = res['context']
           for (let item in data){
             this.articles={
@@ -157,6 +179,7 @@ export default {
           // 必须等到dom加载完成后才能对其进行dom操作
           this.$nextTick(async ()=>{
             this.handleAnchorData()
+            this.rederShare = true;
           })
 
 
@@ -303,5 +326,12 @@ export default {
   border-radius: 10px;
   @include background_color("background_color1");
   @include font_color("font_color1");
+}
+.article_share_info {
+  @include background_color("background_color1");
+  @include font_color("font_color1");
+  @include box_shadow("box_shadow_color1");
+  border-radius: 10px;
+  margin-top: 20px;
 }
 </style>
