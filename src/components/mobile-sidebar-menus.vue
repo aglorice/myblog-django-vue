@@ -77,10 +77,13 @@ export default {
   width: 50vw;
   height: 100vh;
   right: -50vw;
-  @include background_color("background_color1");
   position: fixed;
   transition: 1s;
   z-index: 100;
+  /* ios需要下面这个属性 消除抖动*/
+  -webkit-overflow-scrolling: touch;
+  @include background_color("background_color1");
+  @include font_color("font_color1");
 
   ul{
     height: 50vh;
