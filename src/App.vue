@@ -62,10 +62,11 @@ export default {
   },
   created() {
     // 创建看板娘
+    this.$nextTick(()=>{
       window.L2Dwidget.init({
-        pluginRootPath: 'live2dw/',
-        pluginJsPath: 'lib/',
-        pluginModelPath: 'live2d-widget-model-haru_1/assets/',
+        pluginRootPath: '/live2dw/',
+        pluginJsPath: '/lib/',
+        pluginModelPath: '/live2d-widget-model-haru_1/assets/',
         tagMode: false,
         debug: false,
         model: {jsonPath: '/live2dw/live2d-widget-model-haru_1/assets/haru01.model.json'},
@@ -73,6 +74,8 @@ export default {
         mobile: {show: true},
         log: false
       })
+    })
+
   },
   beforeUpdate() {
   },
