@@ -22,10 +22,12 @@
       </div>
     </div>
     <div class="box-card-body">
-      <el-button id="box-card-body-button" type="primary">follow me</el-button>
+      <el-button id="box-card-body-button" type="primary" @click="githubUrl">follow me</el-button>
       <div class="box-card-body-share">
         <div class="box-card-body-share-item">
-          <img src="@/assets/img/icon/github.png" alt="" >
+          <a href="https://github.com/aglorice">
+            <img src="@/assets/img/icon/github.png" alt="" >
+          </a>
         </div>
         <div class="box-card-body-share-item">
           <a href="https://blog.csdn.net/aglorice?spm=1000.2115.3001.5343">
@@ -54,10 +56,15 @@ export default {
         count:5,
         categorize:2,
         pag:1
-      }
+      },
+
     }
   },
   methods:{
+    githubUrl(){
+      console.log('123')
+      window.open('https://github.com/aglorice','github')
+    },
     getarticlecount(){
       getArticleCount(null).then((res) => {
         if (res.code === 200) {
