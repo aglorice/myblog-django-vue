@@ -67,7 +67,7 @@
     </div>
 
 
-    <mobileArticleMenus :listtree="new_listtree" @handleAnchorClick="handleAnchorClick"></mobileArticleMenus>
+    <mobileArticleMenus v-if="startRenderMenu" :listtree="new_listtree" @handleAnchorClick="handleAnchorClick"></mobileArticleMenus>
 
   </div>
 
@@ -91,7 +91,8 @@ export default {
       new_listtree:'',
       listref:'',
       selfWbsite: variable.selfWbsite,
-      rederShare:false // 文章分享的状态
+      rederShare:false, // 文章分享的状态
+      startRenderMenu:false // 目录加载的时期
     }
   },
   components:{
@@ -144,6 +145,7 @@ export default {
         indent: hTags.indexOf(el.tagName),
       }));
       this.new_listtree = transListToTreeData(this.titles)
+      this.startRenderMenu = true // 开始渲染目录
     },
 
 
