@@ -1,5 +1,7 @@
 <template>
   <div class="wordCloudPag">
+    <h4>文章标签</h4>
+    <p>目前共计{{echartsData.length}}个标签</p>
     <div class="wordCloudPagBorder">
       <el-skeleton class="loading" v-show="loading" :rows="7" animated :throttle="500" />
       <div id="wordCloudPag" ></div>
@@ -142,9 +144,12 @@ export default {
   width: 100vw;
 
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  h4 {
+    margin-top: 20px;
+  }
 }
 .wordCloudPagBorder {
   margin-top: 20px;
