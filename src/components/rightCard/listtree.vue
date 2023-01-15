@@ -27,6 +27,7 @@ export default {
     }
   },
   mounted() {
+
     window.addEventListener('scroll',this.handleScrollx,true)
   },
   destroyed() {
@@ -38,15 +39,15 @@ export default {
     },
     // 处理目录使得它始终能够处于可视范围内
     handleScrollx() {
-      let tophead = document.getElementById('article-body-head').clientHeight;
-      let marginTop = window.pageYOffset-tophead
-      let topcard = document.getElementById('box-card-listtree').getBoundingClientRect().top
-      // let topcard_heught = document.getElementById('box-card-listtree').clientHeight;
-      if ( topcard <50 && topcard >-50){
-        document.getElementById('box-card-listtree').style.marginTop =  marginTop>0?`${marginTop}px`:'0'
-      }else {
-        document.getElementById('box-card-listtree').style.marginTop = marginTop>0?`${marginTop}px`:'0'
-      }
+        let tophead = document.getElementById('article-body-head').clientHeight;
+        let marginTop = window.pageYOffset - tophead
+        let topcard = document.getElementById('box-card-listtree').getBoundingClientRect().top
+        // let topcard_heught = document.getElementById('box-card-listtree').clientHeight;
+        if (topcard < 50 && topcard > -50) {
+          document.getElementById('box-card-listtree').style.marginTop = marginTop > 0 ? `${marginTop}px` : '0'
+        } else {
+          document.getElementById('box-card-listtree').style.marginTop = marginTop > 0 ? `${marginTop}px` : '0'
+        }
     },
   }
 }
