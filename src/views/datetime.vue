@@ -4,7 +4,8 @@
       <h1>归档</h1>
     </div>
     <div class="datetime">
-      <p class="datetime-head">时光荏苒，不知不觉已经过了下面这么多年了</p>
+      <p class="datetime-head">时光荏苒，不知不觉已经过了这么多年了</p>
+      <el-skeleton class="loading" v-show="loading" :rows="15" animated :throttle="500" />
       <div class="datetime-body">
         <ul >
           <li class="datetime-body-year" v-for="(value,index) in datetimeArticle"
@@ -38,7 +39,8 @@ export default {
   name: `datetime`,
   data(){
     return{
-      datetimeArticle:[]
+      datetimeArticle:[],
+      loading:true
     }
   },
   mounted() {
@@ -50,6 +52,7 @@ export default {
       getArticleFiletime(null).then((res) => {
         if (res.code === 200) {
           this.datetimeArticle = res['context']
+          this.loading = false // 关闭加载动画
         } else {
           this.$message({
             type: 'info',
@@ -70,6 +73,9 @@ export default {
 @import "@/assets/scss/minix.scss"; // ul样式美化
 @media (max-width: 750px) {
   .datetime-body {
+    width: 70% !important;
+  }
+  .loading {
     width: 70% !important;
   }
 }
@@ -176,6 +182,10 @@ h1 {
     border: 0.3em darkorange solid;
   }
 
+}
+.loading {
+  width: 80%;
+  height: 150px;
 }
 
 </style>

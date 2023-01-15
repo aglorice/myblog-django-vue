@@ -12,7 +12,8 @@
                  v-for="(value) in fansData" :key="value.media_id">
           <a style="text-decoration: none" :href="value.url">
             <div slot="header" class="clearfix">
-              <img v-lazy="value.cover" :alt="value.title" referrerPolicy="no-referrer">
+<!--              注意这里修改了v-lazy的源码，已实现在不改变网站的referer的情况下也能加载图片，原因是因为v-lazy使用了虚拟dom的操作-->
+              <img v-lazy="value.cover" :alt="value.title">
             </div>
             <div class="box-card-body">
               <h5>{{value.title}}</h5>
