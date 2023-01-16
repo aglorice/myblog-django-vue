@@ -159,6 +159,12 @@ export default {
           });
         }
       }).catch((err) => {
+        this.isRenderStart = true
+          this.$message({
+            type: 'error',
+            message: err.msg,
+            duration: 1500
+          });
         console.log(err)
       })
 
