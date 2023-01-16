@@ -59,6 +59,9 @@ export default {
     window.document.documentElement.setAttribute("data-theme", 'day');
     // 获取文章信息(前10个)
     this.getarticle()
+    // 监视网页的状态
+    document.addEventListener('visibilitychange', this.handleVisiable)
+
   },
   created() {
     // 创建看板娘
@@ -79,7 +82,18 @@ export default {
   },
   beforeUpdate() {
   },
+  destroyed() {
+    document.removeEventListener('visibilitychange', this.handleVisiable)
+  },
   methods:{
+    // 根据网页的状态切换标题
+    handleVisiable(e) {
+      if (e.target.visibilityState === 'visible') {
+        document.title = "被发现啦(┬┬﹏┬┬)"
+      } else {
+        document.title = "我藏好啦(❁´◡`❁)"
+      }
+    },
     //输出佛祖保佑
     consoleFz(){
       console.log([
