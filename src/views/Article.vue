@@ -63,7 +63,7 @@
 <script>
 import {getArticlePage} from "@/api/http";
 import variable from "@/assets/js/variable";
-
+import { Loading } from 'element-ui';
 export default {
   name: `Article`,
   data(){
@@ -101,6 +101,7 @@ export default {
           page:currentPage,
           page_size:this.pagesize
         }
+        let loadingInstance = Loading.service({ fullscreen: true });
         getArticlePage(params).then((res) => {
           if (res.code === 200) {
             const data = res['context']
@@ -118,15 +119,18 @@ export default {
             }
             this.articles = articles
             this.pagecount = res['pagedate']['count']
+            loadingInstance.close();
           } else {
             this.$message({
               type: 'info',
               message: '数据获取失败',
               duration: 1500
             });
+            loadingInstance.close();
           }
         }).catch((err) => {
           console.log(err)
+          loadingInstance.close();
         })
       }
     }
