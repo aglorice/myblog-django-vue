@@ -157,6 +157,7 @@ export default {
             message: '数据获取失败',
             duration: 1500
           });
+          this.isRenderStart = true
         }
       }).catch((err) => {
         this.isRenderStart = true
