@@ -30,7 +30,7 @@ export default {
 
     window.addEventListener('scroll',this.handleScrollx,true)
   },
-  destroyed() {
+  beforeDestroy() {
     window.removeEventListener('scroll',this.handleScrollx,true)
   },
   methods: {

@@ -82,7 +82,7 @@ export default {
   },
   beforeUpdate() {
   },
-  destroyed() {
+  beforeDestroy() {
     document.removeEventListener('visibilitychange', this.handleVisiable)
   },
   methods:{

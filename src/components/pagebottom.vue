@@ -47,7 +47,7 @@ export default {
     // 开始计算时间差
     this.siteTime()
   },
-  destroyed() {
+  beforeDestroy() {
     clearTimeout(this.timer)
   },
   computed:{

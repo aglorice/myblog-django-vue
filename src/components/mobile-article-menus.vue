@@ -37,7 +37,7 @@ export default {
   mounted() {
     document.addEventListener("click", (e) => this.clickOutSide(e));
   },
-  destroyed() {
+  beforeDestroy() {
     document.removeEventListener("click", (e) => this.clickOutSide(e));
   },
   methods:{
