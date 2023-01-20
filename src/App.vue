@@ -184,7 +184,6 @@ export default {
   padding: 0;
   margin: 0;
   font-size: 16px;
-  cursor: url('@/assets/img/default.cur'),auto;
 }
 /*
   解决底部出现滚动条
