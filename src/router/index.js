@@ -34,28 +34,28 @@ const routes = [
         path: '/index',
         component:Home,
         meta:{
-            title:'前端小窝'
+            title:'友人的Blog'
         }
     },
     {
         path: '/article',
         component:Article,
         meta:{
-            title:'文章|前端小窝'
+            title:'文章|友人的Blog'
         },
     },
     {
         path: '/article/category/:category',
         component: categoryArticle,
         meta:{
-            title:'文章|前端小窝'
+            title:'文章|友人的Blog'
         },
     },
     {
         path: '/article/pag/:pag',
         component: pagArticle,
         meta:{
-            title:'文章|前端小窝'
+            title:'文章|友人的Blog'
         },
     },
     {
@@ -71,42 +71,42 @@ const routes = [
         component:Categorize,
 
         meta:{
-            title:'分类|前端小窝'
+            title:'分类|友人的Blog'
         }
     },
     {
         path: '/pag',
         component:Pag,
         meta:{
-            title:'标签|前端小窝'
+            title:'标签|友人的Blog'
         }
     },
     {
         path: '/datetime',
         component:dateTime,
         meta: {
-            title: '归档|前端小窝'
+            title: '归档|友人的Blog'
         }
     },
     {
         path: '/friend',
         component:friend,
         meta: {
-            title: '友人帐|前端小窝'
+            title: '友人帐|友人的Blog'
         }
     },
     {
         path: '/about',
         component:Remind,
         meta:{
-            title:'关于|前端小窝'
+            title:'关于|友人的Blog'
         }
     },
     {
         path: '/chasefan',
         component:ChaseFan,
         meta: {
-            title: '追番|前端小窝'
+            title: '追番|友人的Blog'
         }
     },
 ]
