@@ -2,7 +2,7 @@
   <div>
 <!--    首页-->
     <div class="container_head">
-      <h1>前端小窝</h1>
+      <h1>友人的Blog</h1>
 <!--      打字效果-->
       <vue-typed-js
           class="desc"
