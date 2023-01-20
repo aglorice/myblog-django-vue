@@ -5,13 +5,13 @@
     <img src="@/assets/img/backgound-img/dance.png" alt="没有未来的未来不是我要的未来">
   </div>
   <div class="copyright">
-    <span> Copyright © 2020-{{getYear}} by <a :href="href">aglorice</a>. All Rights Reserved. </span>
+    <span> Copyright © {{getYear}} by <a :href="href">aglorice</a>. All Rights Reserved. </span>
   </div>
 
   <div class="record_number">
-    <span>萌-123123123123</span>
-    <el-divider direction="vertical"></el-divider>
-    <span>萌-123123123123</span>
+    <span><a href="https://beian.miit.gov.cn/">蜀ICP备2023001442号-1</a></span>
+<!--    <el-divider direction="vertical"></el-divider>-->
+<!--    <span>萌-123123123123</span>-->
   </div>
   <div class="website_time">
     <p id="sitetime"></p>
@@ -119,7 +119,9 @@ export default {
 // 备案号
 .record_number {
   span {
-    font-size: 0.8em;
+    a {
+      font-size: 0.8em;
+    }
   }
 }
 // 页面底部图标
