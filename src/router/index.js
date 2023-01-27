@@ -117,7 +117,7 @@ const router =  new VueRouter({
     routes,
 
 })
-// 把这段代码直接粘贴到router/index.js中的Vue.use(VueRouter)之前
+
 const originalPush = VueRouter.prototype.push;
 VueRouter.prototype.push = function(location) {
     return originalPush.call(this, location).catch(err => {
