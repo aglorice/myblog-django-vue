@@ -149,6 +149,10 @@ export default {
   align-items: center;
   h4 {
     margin-top: 20px;
+    @include font_color("font_color1");
+  }
+  p {
+    @include font_color("font_color1");
   }
 }
 .wordCloudPagBorder {
