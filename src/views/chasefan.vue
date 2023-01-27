@@ -141,6 +141,7 @@ export default {
     text-align: center;
     margin: 20px 0 20px 0;
     font-family: Noto Serif SC,serif;
+    @include font_color("font_color1");
   }
 }
 .fans{
