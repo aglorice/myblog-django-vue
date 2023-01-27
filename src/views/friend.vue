@@ -12,17 +12,19 @@
       <el-skeleton class="loading" v-show="loading" :rows="6" animated :throttle="500" />
       <div class="row friends">
         <div v-for="(value,index) in friends" :key="index"  class="friend col-md-4 col-sm-6 col-xs-12 ">
-          <div  class=" friends_item">
-            <div class="friends_item_img"
-                 :style="'background-image:url('+value.blog_icon+');'">
-              <div class="friends_item_icon">
-                <img :src='value.blog_icon' alt="">
+          <a :href="value.blog_site">
+            <div  class=" friends_item">
+              <div class="friends_item_img"
+                   :style="'background-image:url('+value.blog_icon+');'">
+                <div class="friends_item_icon">
+                  <img :src='value.blog_icon' alt="">
+                </div>
               </div>
-            </div>
 
-            <span>{{value.blog_name}}</span>
-            <p>{{value.blog_info}}</p>
-          </div>
+              <span>{{value.blog_name}}</span>
+              <p>{{value.blog_info}}</p>
+            </div>
+          </a>
         </div>
 
       </div>
