@@ -36,7 +36,7 @@ export default {
   name: `pagebottom`,
   data(){
     return{
-      href:variable.base_url,
+      href:variable.selfWbsite,
       year:parseInt(variable.websiteDatetime.split('-')[0]),
       month:parseInt(variable.websiteDatetime.split('-')[1]),
       day:parseInt(variable.websiteDatetime.split('-')[2]),
