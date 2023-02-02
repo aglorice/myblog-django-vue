@@ -5,7 +5,7 @@
     </div>
     <div class="container-body">
       <div class="container-body-articles">
-        <div class="container-body-article" v-for="(value,index) in articles" :key="index">
+        <div class="container-body-article" v-for="(value) in articles" :key="value.id">
           <div class="container-body-article-cover">
             <router-link :to="`/article/details/${value.id}`"><img   v-lazy="value.imgsrc" alt=""></router-link>
           </div>
@@ -143,7 +143,7 @@ export default {
 // 响应式
 @media (max-width: 750px){
   .container-body-articles {
-    width: 100vw !important;
+    width: 90vw !important;
   }
   .container-body-article {
     flex-direction:column;
