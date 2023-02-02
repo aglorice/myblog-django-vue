@@ -63,15 +63,7 @@ export default {
 #aplayer {
   position: fixed;
   float: right;
-  .aplayer-list {
-    ol {
-      li {
-        span {
-          font-size: 0.8em;
-        }
-      }
-    }
-  }
+
 }
 @media (max-width: 750px){
   .aplayer{
