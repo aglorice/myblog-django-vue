@@ -48,11 +48,19 @@ export default {
       let option = {
         title: {
           text: '最近的文章篇数',
-          left: 'center'
+          left: 'center',
+          textStyle:{
+            color:'skyblue',
+            fontFamily:'Noto Serif SC,serif'
+          }
         },
         xAxis: {
           type: 'category',
-          data: this.recentarticletime.time.reverse()
+          data: this.recentarticletime.time.reverse(),
+          nameTextStyle:{
+            color:'skyblue',
+            fontFamily:'Noto Serif SC,serif'
+          }
         },
         yAxis: {
           type: 'value'
@@ -61,12 +69,16 @@ export default {
           {
             data: this.recentarticletime.value.reverse(),
             type: 'line',
-            smooth: true
+            smooth: true,
+            lineStyle:{
+              color:'#007bff'
+            }
           }
         ]
       };
       // 使用刚指定的配置项和数据显示图表。
       myChart.setOption(option);
+      // 监听页面变化重绘
       window.addEventListener('resize', () => {
         myChart.resize()
       })

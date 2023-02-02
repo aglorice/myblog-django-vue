@@ -6,6 +6,7 @@
 
 <script>
 import {getCountCategorize} from "@/api/http";
+import * as echarts from "echarts";
 
 export default {
   name: "categoryCharts",
@@ -53,22 +54,45 @@ export default {
       let option = {
         title: {
           text: "文章分类",
+          textStyle:{
+            color:'skyblue',
+            fontFamily:'Noto Serif SC,serif'
+          }
         },
         tooltip: {},
         legend: {
           data: ["数量"],
+
         },
         xAxis: {
           data: this.categorys.name,
+
         },
         yAxis: {},
         series: [
           {
-            name: "数量",
-            type: "bar",
+            type: 'bar',
+            name:'文章分类',
+            showBackground: true,
+            itemStyle: {
+              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                { offset: 0, color: '#83bff6' },
+                { offset: 0.5, color: '#188df0' },
+                { offset: 1, color: '#188df0' }
+              ])
+            },
+            emphasis: {
+              itemStyle: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                  { offset: 0, color: '#2378f7' },
+                  { offset: 0.7, color: '#2378f7' },
+                  { offset: 1, color: '#83bff6' }
+                ])
+              }
+            },
             data: this.categorys.value,
-          },
-        ],
+          }
+        ]
       };
       // 使用刚指定的配置项和数据显示图表。
       myChart.setOption(option);

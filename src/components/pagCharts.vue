@@ -46,27 +46,47 @@ export default {
       // 基于准备好的dom，初始化echarts实例  这个和上面的main对应
       let myChart = this.$echarts.init(document.getElementById("pag_chart"));
       // 指定图表的配置项和数据
-      let option = {
+      let option =  {
         title: {
-          text: '文章标签',
-          left: 'left'
+          text: "文章标签",
+          textStyle:{
+            color:'skyblue',
+            fontFamily:'Noto Serif SC,serif'
+          }
         },
         tooltip: {
           trigger: 'item'
         },
+        legend: {
+          top: '5%',
+          left: 'center'
+        },
         series: [
           {
-            name: '文章数量',
+            name: '文章标签',
             type: 'pie',
-            radius: '50%',
-            data: this.pags,
+            radius: ['40%', '70%'],
+            avoidLabelOverlap: false,
+            itemStyle: {
+              borderRadius: 10,
+              borderColor: '#fff',
+              borderWidth: 2
+            },
+            label: {
+              show: false,
+              position: 'center'
+            },
             emphasis: {
-              itemStyle: {
-                shadowBlur: 10,
-                shadowOffsetX: 0,
-                shadowColor: 'rgba(0, 0, 0, 0.5)'
+              label: {
+                show: true,
+                fontSize: 40,
+                fontWeight: 'bold'
               }
-            }
+            },
+            labelLine: {
+              show: false
+            },
+            data: this.pags
           }
         ]
       };
