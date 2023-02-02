@@ -147,9 +147,6 @@ export default {
       this.new_listtree = transListToTreeData(this.titles)
       this.startRenderMenu = true // 开始渲染目录
     },
-
-
-
     //复制成功的回调
     handleCopyCodeSuccess(){
       this.$notify({
@@ -183,8 +180,6 @@ export default {
             this.handleAnchorData()
             this.rederShare = true;
           })
-
-
         } else {
           this.$message({
             type: 'info',
