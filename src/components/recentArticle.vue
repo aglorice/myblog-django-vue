@@ -31,15 +31,13 @@ export default {
             this.drawArticle()
             this.$store.dispatch('recentarticle',res['context'])
 
-          } else {
-            this.$message({
-              type: 'info',
-              message: '数据获取失败',
-              duration: 1500
-            });
           }
-        }).catch((err) => {
-          console.log(err)
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '数据获取失败',
+            duration: 1500
+          });
         })
       }
     },
