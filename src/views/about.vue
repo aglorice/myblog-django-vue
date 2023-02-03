@@ -57,15 +57,13 @@ export default {
         if (res.code === 200) {
           this.about = res['context'][0]['fields']['content']
           // 将信息提交到vuex
-        } else {
-          this.$message({
-            type: 'info',
-            message: '数据获取失败',
-            duration: 1500
-          });
         }
-      }).catch((err) => {
-        console.log(err)
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '数据获取失败',
+          duration: 1500
+        });
       })
     },
   }
