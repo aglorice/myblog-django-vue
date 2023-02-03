@@ -38,15 +38,13 @@ export default {
             this.tags = res['context']
             // 将信息提交到vuex
             this.$store.dispatch('put_pag', this.tags)
-          } else {
-            this.$message({
-              type: 'info',
-              message: '数据获取失败',
-              duration: 1500
-            });
           }
-        }).catch((err) => {
-          console.log(err)
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '数据获取失败',
+            duration: 1500
+          });
         })
       }
     },

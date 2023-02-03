@@ -7,7 +7,7 @@
   <div class="container_body">
     <h4>一共发现了{{category.length}}篇文章</h4>
     <div class="category_type">
-      <el-skeleton class="loading" v-show="loading" :rows="10" animated :throttle="500" />
+      <el-skeleton class="loading" v-show="loading" :rows="8" animated :throttle="500" />
       <el-timeline>
         <el-timeline-item v-for="(value) in category"
                           :timestamp="value.created_time"
@@ -51,15 +51,13 @@ export default {
         if (res.code === 200) {
           this.category = res['context']
           this.loading = false
-        } else {
-          this.$message({
-            type: 'info',
-            message: '数据获取失败',
-            duration: 1500
-          });
         }
-      }).catch((err) => {
-        console.log(err)
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '数据获取失败',
+          duration: 1500
+        });
       })
     }
   }
@@ -119,7 +117,7 @@ export default {
   width: 70%;
 }
 .loading {
-  width: 70%;
+  width: 70vw;
   height: 20em;
 }
 </style>

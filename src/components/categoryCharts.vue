@@ -35,15 +35,13 @@ export default {
             // 将信息提交到vuex
             this.drawChartCategory()
             this.$store.dispatch('put_category',res['context'])
-          } else {
-            this.$message({
-              type: 'info',
-              message: '数据获取失败',
-              duration: 1500
-            });
           }
-        }).catch((err) => {
-          console.log(err)
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '数据获取失败',
+            duration: 1500
+          });
         })
       }
     },

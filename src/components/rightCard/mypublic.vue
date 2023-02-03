@@ -26,15 +26,13 @@ export default {
       getAnnouncement(null).then((res) => {
         if (res.code === 200) {
           this.announcement = res['context'][0]['fields']['announcement'];
-        } else {
-          this.$message({
-            type: 'info',
-            message: '数据获取失败',
-            duration: 1500
-          });
         }
-      }).catch((err) => {
-        console.log(err)
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '数据获取失败',
+          duration: 1500
+        });
       })
     }
   },

@@ -62,7 +62,6 @@ export default {
   },
   methods:{
     githubUrl(){
-      console.log('123')
       window.open('https://github.com/aglorice','github')
     },
     getarticlecount(){
@@ -72,15 +71,13 @@ export default {
           this.article = data
           this.$store.dispatch('putarticleinfo', data)
           // 将信息提交到vuex
-        } else {
-          this.$message({
-            type: 'info',
-            message: '数据获取失败',
-            duration: 1500
-          });
         }
-      }).catch((err) => {
-        console.log(err)
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '数据获取失败',
+          duration: 1500
+        });
       })
     }
 

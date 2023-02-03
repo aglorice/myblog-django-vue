@@ -166,7 +166,6 @@ export default {
             message: err.msg,
             duration: 1500
           });
-        console.log(err)
       })
 
     },
