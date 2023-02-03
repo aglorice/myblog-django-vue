@@ -45,19 +45,15 @@ export default {
             this.category= res['context']
             // 将信息提交到vuex
             this.$store.dispatch('put_category',this.category)
-
-          } else {
-            this.$message({
-              type: 'info',
-              message: '数据获取失败',
-              duration: 1500
-            });
           }
-        }).catch((err) => {
-          console.log(err)
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '数据获取失败',
+            duration: 1500
+          });
         })
       }
-
     },
   }
 }
@@ -100,6 +96,7 @@ export default {
       }
       span {
         margin-left: 5px ;
+        cursor:pointer;
       }
       &:hover{
         background-color: gainsboro;
