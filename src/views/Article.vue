@@ -119,18 +119,20 @@ export default {
             }
             this.articles = articles
             this.pagecount = res['pagedate']['count']
-            loadingInstance.close();
-          } else {
-            this.$message({
-              type: 'info',
-              message: '数据获取失败',
-              duration: 1500
+            this.$nextTick(() => { // 以服务的方式调用的 Loading 需要异步关闭
+              loadingInstance.close();
             });
-            loadingInstance.close();
           }
-        }).catch((err) => {
-          console.log(err)
-          loadingInstance.close();
+        }).catch(() => {
+          this.$nextTick(() => { // 以服务的方式调用的 Loading 需要异步关闭
+            loadingInstance.close();
+          });
+          this.$message({
+            type: 'info',
+            message: '数据获取失败',
+            duration: 1500
+          });
+
         })
       }
     }
