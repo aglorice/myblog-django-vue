@@ -96,7 +96,7 @@
 
 <script>
 import {getFriend, submitFriend} from "@/api/http";
-
+import { Loading } from 'element-ui';
 export default {
   name: `friend`,
   data(){
@@ -142,11 +142,14 @@ export default {
     },
     // 提交申请
     submitInfo(){
-      this.loading = true;
+
+      let loadingInstance = Loading.service({fullscreen:true});
+
       submitFriend(this.blog).then((res) => {
-        print(res.code)
         if (res.code === 200) {
-          this.loading = false
+          this.$nextTick(() => { // 以服务的方式调用的 Loading 需要异步关闭
+            loadingInstance.close();
+          });
           this.$message({
             type: 'success',
             message: '提交成功',
@@ -162,13 +165,37 @@ export default {
           });
 
         }
-      }).catch(() => {
-        this.loading = false;
-        this.$message({
-          type: 'info',
-          message: '请仔细核对提交要求',
-          duration: 1500
+      }).catch((err) => {
+        this.$nextTick(() => { // 以服务的方式调用的 Loading 需要异步关闭
+          loadingInstance.close();
         });
+        if(err.code == 400){
+          this.$message({
+            type: 'info',
+            message: '请仔细核对提交要求',
+            duration: 1500
+          });
+        }else if(err.code == 201){
+          this.$message({
+            type: 'info',
+            message: '该名字已被使用',
+            duration: 1500
+          });
+        }else if(err.code == 202){
+          this.$message({
+            type: 'info',
+            message: '请求失败，请重新尝试',
+            duration: 1500
+          });
+        }else if(err.code == 'ERR_BAD_REQUEST'){
+          this.$message({
+            type: 'info',
+            message: '你访问的太快了😭',
+            duration: 1500
+          });
+        }
+
+
       })
 
     },
