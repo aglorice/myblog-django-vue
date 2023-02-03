@@ -5,7 +5,7 @@
     </div>
     <div class="datetime">
       <p class="datetime-head">时光荏苒，不知不觉已经过了这么多年了</p>
-      <el-skeleton class="loading" v-show="loading" :rows="15" animated :throttle="500" />
+      <el-skeleton class="loading" v-show="loading" :rows="8" animated :throttle="500" />
       <div class="datetime-body">
         <ul >
           <li class="datetime-body-year" v-for="(value,index) in datetimeArticle"
@@ -53,15 +53,13 @@ export default {
         if (res.code === 200) {
           this.datetimeArticle = res['context']
           this.loading = false // 关闭加载动画
-        } else {
-          this.$message({
-            type: 'info',
-            message: '数据获取失败',
-            duration: 1500
-          });
         }
-      }).catch((err) => {
-        console.log(err)
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '数据获取失败',
+          duration: 1500
+        });
       })
     }
   }
@@ -164,6 +162,11 @@ h1 {
       transition: 0.5s;
       font-size: 1.2em;
 
+      display:-webkit-box;
+      overflow: hidden; /*超出隐藏*/
+      text-overflow: ellipsis;/*隐藏后添加省略号*/
+      -webkit-box-orient:vertical;
+      -webkit-line-clamp:1; //想显示多少行
     }
     a {
       text-decoration: none;
@@ -185,7 +188,7 @@ h1 {
 }
 .loading {
   width: 80%;
-  height: 150px;
+  height: 30vh;
 }
 
 </style>
