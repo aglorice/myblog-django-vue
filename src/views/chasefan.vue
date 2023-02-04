@@ -8,7 +8,7 @@
     <h1 >追番列表</h1>
     <el-skeleton class="loading" v-show="loading" :rows="6" animated :throttle="500" />
     <div class="fans row">
-    <el-tabs v-model="activeName" @tab-click="handleClick">
+    <el-tabs v-show="!loading" v-model="activeName" @tab-click="handleClick">
       <el-tab-pane v-for="(labelName,index) in optionsName " :label="labelName" :name="labelName" :key="index">
         <div class="fans-item-pane row">
           <el-card class="fans-item box-card container-body-card col-xs-6  col-md-4 col-lg-3"
@@ -123,7 +123,7 @@ export default {
 @import "@/assets/scss/card/card";
 @media (max-width: 750px) {
   .fans{
-    width: 80%!important;
+    width: 90%!important;
   }
   .loading {
     width: 80% !important;
@@ -215,6 +215,8 @@ export default {
 }
 .fans-item-pane {
   width: 100%;
+  margin-right: 0!important;
+  margin-left: 0!important;
 }
 
 </style>
