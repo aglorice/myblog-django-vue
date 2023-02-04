@@ -55,7 +55,7 @@ export default {
         xAxis: {
           type: 'category',
           data: this.recentarticletime.time.reverse(),
-          nameTextStyle:{
+          TextStyle:{
             color:'skyblue',
             fontFamily:'Noto Serif SC,serif'
           }
