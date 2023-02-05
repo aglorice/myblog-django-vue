@@ -24,6 +24,7 @@
     "sass-loader": "^13.2.0",
     "vue": "^2.6.14",
     "vue-aplayer": "^1.6.1",
+    "vue-danmaku": "^1.7.0",
     "vue-element-loading": "^2.0.2",
     "vue-router": "^3.6.5",
     "vue-typed-js": "^0.1.2",
