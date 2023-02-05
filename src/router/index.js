@@ -13,7 +13,7 @@ const friend = ()=> import("@/views/friend")
 const ChaseFan = ()=> import('@/views/chasefan')
 const categoryArticle = ()=> import('@/views/categoryArticle')
 const pagArticle = ()=> import('@/views/pagArticle')
-
+const Message = ()=> import("@/views/message")
 Vue.use(VueRouter);
 
 const routes = [
@@ -80,6 +80,13 @@ const routes = [
         meta:{
             title:'标签|友人的Blog'
         }
+    },
+    {
+      path: '/message',
+      component:Message,
+      meta: {
+          title: '留言板|友人的Blog'
+      }
     },
     {
         path: '/datetime',
