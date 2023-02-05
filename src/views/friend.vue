@@ -346,6 +346,18 @@ h3 {
   span {
     font-size: 1.5em;
     font-weight: bold;
+    display:-webkit-box;
+    overflow: hidden; /*超出隐藏*/
+    text-overflow: ellipsis;/*隐藏后添加省略号*/
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:1; //想显示多少行
+  }
+  p {
+    display:-webkit-box;
+    overflow: hidden; /*超出隐藏*/
+    text-overflow: ellipsis;/*隐藏后添加省略号*/
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:1; //想显示多少行
   }
 }
 .friend {
