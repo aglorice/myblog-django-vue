@@ -8,10 +8,56 @@
                     :text="addfriendinfo"
                     @copy-code-success="handleCopyCodeSuccess">
       </v-md-preview>
+      <h3>常用网站</h3>
+      <el-skeleton class="loading" v-show="loading" :rows="6" animated :throttle="500" />
+      <div class="row friends">
+        <div v-for="(value,index) in friends.filter(item =>{
+            return item.blog_type == 0
+          })" :key="index"  class="friend col-md-4 col-sm-6 col-xs-12 ">
+          <a :href="value.blog_site">
+            <div  class=" friends_item">
+              <div class="friends_item_img"
+                   :style="'background-image:url('+value.blog_icon+');'">
+                <div class="friends_item_icon">
+                  <img :src='value.blog_icon' alt="">
+                </div>
+              </div>
+
+              <span>{{value.blog_name}}</span>
+              <p>{{value.blog_info}}</p>
+            </div>
+          </a>
+        </div>
+
+      </div>
       <h3>友人帐</h3>
       <el-skeleton class="loading" v-show="loading" :rows="6" animated :throttle="500" />
       <div class="row friends">
-        <div v-for="(value,index) in friends" :key="index"  class="friend col-md-4 col-sm-6 col-xs-12 ">
+        <div v-for="(value,index) in friends.filter(item =>{
+            return item.blog_type == 1
+          })" :key="index"  class="friend col-md-4 col-sm-6 col-xs-12 ">
+          <a :href="value.blog_site">
+            <div  class=" friends_item">
+              <div class="friends_item_img"
+                   :style="'background-image:url('+value.blog_icon+');'">
+                <div class="friends_item_icon">
+                  <img :src='value.blog_icon' alt="">
+                </div>
+              </div>
+
+              <span>{{value.blog_name}}</span>
+              <p>{{value.blog_info}}</p>
+            </div>
+          </a>
+        </div>
+
+      </div>
+      <h3 >这些网站貌似打不开了</h3>
+      <el-skeleton class="loading" v-show="loading" :rows="6" animated :throttle="500" />
+      <div class="row friends">
+        <div v-for="(value,index) in friends.filter(item =>{
+            return item.blog_type == 2
+          })" :key="index"  class="friend col-md-4 col-sm-6 col-xs-12 ">
           <a :href="value.blog_site">
             <div  class=" friends_item">
               <div class="friends_item_img"
@@ -129,15 +175,13 @@ export default {
         if (res.code === 200) {
           let data = res['context']
           this.friends = data
-        } else {
-          this.$message({
-            type: 'info',
-            message: '数据获取失败',
-            duration: 1500
-          });
         }
-      }).catch((err) => {
-        console.log(err)
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '数据获取失败',
+          duration: 1500
+        });
       })
     },
     // 提交申请
@@ -249,6 +293,11 @@ h1 {
   font-size: 3em;
   color: white;
 }
+
+}
+h3 {
+  margin: 40px 0 40px 0;
+  font-family: Noto Serif SC,serif;
 }
 .container_body {
   @include background_color("background_color1");
@@ -314,6 +363,12 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all 0.5s; /*transition:过度属性*/
+  cursor: pointer;  /*当鼠标进入图片的时候，鼠标的样式变为手型 */
+  &:hover{
+    /*transform:变形属性，scale：缩放1.1倍 */
+    transform: scale(1.1); /*transform:变形属性，scale：缩放1.1倍 */
+  }
 }
 .add_friend {
   width: 70%;
