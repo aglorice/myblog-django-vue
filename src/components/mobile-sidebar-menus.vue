@@ -27,6 +27,9 @@
     <li @click="changeMenu">
       <router-link :to="`/datetime`"><i class="el-icon-folder-opened"></i>归档</router-link>
     </li>
+    <li @click="changeMenu">
+      <router-link :to="`/message`"><i class="el-icon-chat-dot-round"></i>留言板</router-link>
+    </li>
   </ul>
 </div>
 </template>

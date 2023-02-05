@@ -34,6 +34,7 @@
                 <el-dropdown-menu slot="dropdown">
                   <el-dropdown-item icon="el-icon-film"><router-link :to="`/chasefan`">追番</router-link></el-dropdown-item>
                   <el-dropdown-item icon="el-icon-folder-opened"><router-link :to="`/datetime`">归档</router-link></el-dropdown-item>
+                  <el-dropdown-item icon="el-icon-chat-dot-round"><router-link :to="`/message`">留言板</router-link></el-dropdown-item>
 
                 </el-dropdown-menu>
               </el-dropdown>
