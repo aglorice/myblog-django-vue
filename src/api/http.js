@@ -173,3 +173,13 @@ export async function getArticleFiletime(params){
         params: params,
     });
 }
+
+// 获取留言板内容
+
+export async function getMessage(params){
+    return request({
+        url: '/api/getmessage/',
+        method: 'get',
+        params: params,
+    });
+}
