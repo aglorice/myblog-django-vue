@@ -8,12 +8,11 @@
                :channels = 'channels'
                randomChannel
                :debounce="600"
-               v-model="danmus"
-               @play-end="end">
+               v-model="danmus">
     <template  v-slot:dm="{ danmu }">
       <div class="message_item">
-        <img src="https://aglorice.cn/favicon.png" alt="">
-         友人A：{{ danmu.text }}
+        <img :src="danmu.fields.avatar" alt="">
+         {{danmu.fields.name}}：{{ danmu.fields.message }}
       </div>
     </template>
   </vue-danmaku>
@@ -22,6 +21,7 @@
 <script>
 // 1. 引入
 import vueDanmaku from 'vue-danmaku'
+import {getMessage} from "@/api/http";
 
 export default {
   name: `barrage`,
@@ -31,19 +31,36 @@ export default {
   },
   data() {
     return {
-      danmus: [{ avatar: 'http://a.com/a.jpg', name: 'a', text: 'aaa' }, { avatar: 'http://a.com/b.jpg', name: 'b', text: 'bbb' }],
+      danmus: [],
       channels:0
     }
   },
+  mounted() {
+    this.GetMessage()
+  },
   methods: {
-    end() {
-      console.log(this.$refs.danmaku);
+    GetMessage(){
+      getMessage(null).then((res) => {
+        if (res.code === 200) {
+          this.danmus = res['context']
+          // 初始化播放器
+        }
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '数据获取失败',
+          duration: 1500
+        });
+      })
     }
   }
 }
 </script>
 <style scoped lang="scss">
 .message_item {
+  background-color: white;
+  border-radius: 0.5em;
+  color: black;
   img {
     width: 1.6em;
     height: 1.6em;
