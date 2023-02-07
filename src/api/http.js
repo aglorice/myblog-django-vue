@@ -183,3 +183,12 @@ export async function getMessage(params){
         params: params,
     });
 }
+
+// 添加留言
+export async function addMessage(params){
+    return request({
+        url: '/api/addmessage/',
+        method: 'post',
+        params: params,
+    });
+}
