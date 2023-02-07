@@ -6,7 +6,7 @@
     </div>
     <div class="send_message">
       <input type="text" class="form_input" placeholder="说点什么吧"  v-model="message" />
-      <el-button round>发送</el-button>
+      <el-button round @click="AddMessage">发送</el-button>
     </div>
 
   </div>
@@ -17,6 +17,8 @@
 
 
 import mybaberrage from "@/components/mybaberrage";
+import {addMessage} from "@/api/http";
+import {Loading} from "element-ui";
 
 
 export default {
@@ -25,6 +27,55 @@ export default {
     return{
       message:'',
 
+    }
+  },
+  methods:{
+    AddMessage(){
+      let loadingInstance = Loading.service({fullscreen:true});
+      let params = {
+        message:this.message
+      }
+      addMessage(params).then((res) => {
+        if (res.code === 200) {
+          this.$nextTick(() => { // 以服务的方式调用的 Loading 需要异步关闭
+            loadingInstance.close();
+          });
+          this.$message({
+            message: '数据获取成功!',
+            type: 'success',
+            duration: 1500
+          });
+        }
+      }).catch((err) => {
+        this.$nextTick(() => { // 以服务的方式调用的 Loading 需要异步关闭
+          loadingInstance.close();
+        });
+        if(err.code == 400){
+          this.$message({
+            type: 'info',
+            message: '请仔细核对提交要求',
+            duration: 1500
+          });
+        }else if(err.code == 201){
+          this.$message({
+            type: 'info',
+            message: '数据获取失败',
+            duration: 1500
+          });
+        }else if(err.code == 202){
+          this.$message({
+            type: 'info',
+            message: '请求失败，请重新尝试',
+            duration: 1500
+          });
+        }else if(err.code == 'ERR_BAD_REQUEST'){
+          this.$message({
+            type: 'info',
+            message: '你访问的太快了😭',
+            duration: 1500
+          });
+        }
+      })
     }
   },
   components:{
