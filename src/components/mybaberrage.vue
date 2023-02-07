@@ -62,8 +62,10 @@ export default {
   border-radius: 0.5em;
   color: black;
   img {
-    width: 1.6em;
-    height: 1.6em;
+
+    width: 1.8em;
+    height: 1.8em;
+    border-radius: 0.5em;
   }
 
 }
