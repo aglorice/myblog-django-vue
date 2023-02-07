@@ -41,7 +41,7 @@ export default {
             loadingInstance.close();
           });
           this.$message({
-            message: '数据获取成功!',
+            message: '发送成功!',
             type: 'success',
             duration: 1500
           });
