@@ -20,6 +20,9 @@ const actions = {
     putpagecount(content, value){
         content.commit("putPageCount",value)
     },
+    putdanmu(content, value){
+        content.commit("putDanmu",value)
+    },
 
 }
 

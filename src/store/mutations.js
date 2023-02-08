@@ -20,6 +20,9 @@ const mutations = {
     putPageCount(state,value){
         state.pagecount = value
     },
+    putDanmu(state,value){
+        state.danmus = value
+    },
 }
 
  export default mutations
