@@ -1,4 +1,4 @@
-//
+
 // const variable = {
 //     base_url : 'http://localhost:8000', //后端接口
 //     base_url_img : '',
