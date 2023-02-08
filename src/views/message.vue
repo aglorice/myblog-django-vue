@@ -2,7 +2,7 @@
 <div>
   <div class="container_head">
     <div class="message">
-      <mybaberrage></mybaberrage>
+      <mybaberrage ref="baberrage" :sendMessage="message"></mybaberrage>
     </div>
     <div class="send_message">
       <input type="text" class="form_input" placeholder="说点什么吧"  v-model="message" />
@@ -31,6 +31,7 @@ export default {
   },
   methods:{
     AddMessage(){
+      this.$refs.baberrage.addMessage()
       let loadingInstance = Loading.service({fullscreen:true});
       let params = {
         message:this.message
