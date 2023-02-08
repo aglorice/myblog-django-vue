@@ -11,7 +11,8 @@ const state = {
     category:{},  // 文章分类信息
     pag:{}, // 文章标签
     recentArticle:{}, // 最近的文章
-    pagecount:'' // 文章的页数
+    pagecount:'', // 文章的页数
+    danmus:[] // 留言
 }
 // 注册上面引入的各大模块
 const store = new Vuex.Store({
