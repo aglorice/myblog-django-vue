@@ -43,7 +43,6 @@ export default {
           this.audio = res['context']
           // 初始化播放器
           this.initAudio();
-          // 将信息提交到vuex
         }
       }).catch(() => {
         this.$message({
