@@ -31,10 +31,15 @@
       <router-link :to="`/message`"><i class="el-icon-chat-dot-round"></i>留言板</router-link>
     </li>
   </ul>
+  <div class="mobile-aplayer">
+    <mobileAplayer></mobileAplayer>
+  </div>
 </div>
 </template>
 
 <script>
+import mobileAplayer from "@/components/mobile-aplayer";
+
 export default {
   name: `mobile-sidebar-menus`,
   data(){
@@ -43,6 +48,7 @@ export default {
     }
   },
   components:{
+  mobileAplayer
   },
   props: ["meum_status"],
   mounted() {
@@ -89,7 +95,7 @@ export default {
   @include font_color("font_color1");
 
   ul{
-    height: 50vh;
+    height: 60vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -110,6 +116,10 @@ export default {
         }
       }
     }
+  }
+  .mobile-aplayer {
+    height: 40vh;
+    width: 50vw;
   }
 }
 </style>
