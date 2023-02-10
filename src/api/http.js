@@ -192,3 +192,12 @@ export async function addMessage(params){
         params: params,
     });
 }
+
+// 获取github贡献数据
+export async function getGithub(params){
+    return request({
+        url: '/api/getgithub/',
+        method: 'get',
+        params: params,
+    });
+}
