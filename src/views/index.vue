@@ -24,6 +24,7 @@
 <!--      文章内容-->
       <div class="row container-body-all">
         <div class="col-md-9 col-sm-12">
+          <github user="aglorice"></github>
           <div class="container-body-articles">
             <div class="container-body-article" v-for="(value,index) in articles" :key="index">
               <div class="container-body-article-cover">
@@ -84,6 +85,7 @@ import myinfo from "@/components/rightCard/myInfo";
 import mypublic from "@/components/rightCard/mypublic";
 import pag from "@/components/rightCard/pag";
 import category from "@/components/rightCard/category";
+import github from "@/components/github";
 export default {
   name: `index`,
   data(){
@@ -97,7 +99,8 @@ export default {
     myinfo,
     mypublic,
     pag,
-    category
+    category,
+    github
   },
   computed:{
   },
@@ -328,4 +331,5 @@ export default {
   text-decoration: none;
   @include font_color("font_color1");
 }
+
 </style>
