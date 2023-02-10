@@ -151,13 +151,6 @@ export default {
           this.isRenderStart = true
 
 
-        } else {
-          this.$message({
-            type: 'info',
-            message: '数据获取失败',
-            duration: 1500
-          });
-          this.isRenderStart = true
         }
       }).catch((err) => {
         this.isRenderStart = true
