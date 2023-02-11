@@ -118,6 +118,11 @@ export default {
     }
   }
   .mobile-aplayer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
     height: 40vh;
     width: 50vw;
   }
