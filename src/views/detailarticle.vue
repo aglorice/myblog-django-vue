@@ -47,7 +47,7 @@
       </v-md-preview>
 
       <div class="list_tree col-md-3">
-        <listtree :listtree="new_listtree" @handleAnchorClick="handleAnchorClick"></listtree>
+        <listtree class="list_tree_item" :listtree="new_listtree" @handleAnchorClick="handleAnchorClick"></listtree>
       </div>
       <div class="article_share_info col-md-9 col-sm-12" v-if="rederShare">
         <p><span>文章标题：</span>{{articles.title?articles.title:'四月是你的谎言'}}</p>
@@ -101,7 +101,9 @@ export default {
   },
   props:['id'],
   mounted() {
-    document.documentElement.scrollTop = 0;
+    this.$nextTick(()=>{
+      document.documentElement.scrollTop = 0;
+    })
     const params = {
       id:this.id
     }
@@ -111,13 +113,9 @@ export default {
   },
   methods:{
     handleAnchorClick(anchor) {
-
       const { preview } = this.$refs;
-
       const { lineIndex } = anchor;
-
       const heading = preview.$el.querySelector(`[data-v-md-line="${lineIndex}"]`);
-
       if (heading) {
         preview.scrollToTarget({
           target: heading,
@@ -328,5 +326,12 @@ export default {
   @include box_shadow("box_shadow_color1");
   border-radius: 10px;
   margin-top: 20px;
+}
+.list_tree {
+  position: relative;
+}
+.list_tree_item {
+  top: 0;
+  position: absolute;
 }
 </style>

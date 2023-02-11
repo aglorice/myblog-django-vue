@@ -2,7 +2,7 @@
   <div>
     <div v-loading="loading" v-if="loading" class="github_loading">
     </div>
-    <div v-if="!loading" class="github_charts">
+    <div v-if="isRender" class="github_charts">
       <img  class="github_charts_img" :src="github_img" alt="Github chart" />
       <p>数据来源<a :href="github_url">@{{this.user}}</a></p>
       <div class="github_charts_date">
@@ -39,7 +39,8 @@ export default {
       github_img:`https://ghchart.rshah.org/${this.user}`,
       github_url:`https://github.com/${this.user}`,
       gits:[],
-      loading:true
+      loading:true,
+      isRender:false
     }
   },
   mounted() {
@@ -54,6 +55,7 @@ export default {
         if (res.code === 200) {
           this.gits = res['context']
           this.loading = false
+          this.isRender = true
         }
       }).catch(() => {
         this.loading = false

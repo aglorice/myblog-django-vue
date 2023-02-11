@@ -74,7 +74,7 @@ export default {
         debug: false,
         model: {jsonPath: '/live2dw/live2d-widget-model-haru_1/assets/haru01.model.json'},
         display: {position: 'right', width: 150, height: 300},
-        mobile: {show: true},
+        mobile: {show: false},
         log: false
       })
     })

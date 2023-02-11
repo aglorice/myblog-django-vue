@@ -88,7 +88,7 @@ export default {
   @include box_shadow("box_shadow_color1");
   border-radius: 10px;
 
-  z-index: 99;
+  z-index: 2001;
 }
 .backUp {
   img {

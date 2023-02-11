@@ -67,8 +67,8 @@ export default {
   name: `navigation`,
   data(){
     return{
-      bgcover:0,
-      meum_status:0, // 侧边菜单打开的状态（默认为0）
+      bgcover:false,
+      meum_status:false, // 侧边菜单打开的状态（默认为0）
       // 滚动前，滚动条距文档顶部的距离
       oldScrollTop: 0,
     }
@@ -101,14 +101,14 @@ export default {
     openMeum(){
       document.getElementById('mobile-sidebar-menus').style.right = '0';
       this.scrollStop();
-      this.bgcover = 1; // 打开覆盖层
+      this.bgcover = true; // 打开覆盖层
       setTimeout(()=>{
-        this.meum_status = 1;
+        this.meum_status = true;
       }, 1000 )
     },
     getMenuStatus(value){
       this.meum_status = value
-      this.bgcover = 0;
+      this.bgcover = false;
       this.scrollMove()
     },
     scrollStop(){
