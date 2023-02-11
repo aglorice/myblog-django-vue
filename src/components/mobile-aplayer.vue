@@ -58,16 +58,31 @@ export default {
     },
     prev(){
       this.currentMusic = this.audio[this.current - 1 === -1?this.current =this.allMusic - 1:--this.current]
-      this.$refs.myaudio.load()
-      this.$refs.myaudio.play()
+      let playPromise = this.$refs.myaudio.play();
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          this.$refs.myaudio.load();
+          if(this.isPlay === true){
+            this.$refs.myaudio.play();
+          }
+        }).catch(() => {
+          this.next()
+        });
+      }
     },
     next(){
       this.currentMusic = this.audio[this.current+1 === this.allMusic?this.current = 0:++this.current]
-      let promise = this.$refs.myaudio.load()
-      promise && promise.catch(function(reason){
-        console.log(reason);
-      });
-      this.$refs.myaudio.play()
+      let playPromise = this.$refs.myaudio.play();
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          this.$refs.myaudio.load();
+          if(this.isPlay === true){
+            this.$refs.myaudio.play();
+          }
+        }).catch(() => {
+              this.next()
+        });
+      }
     },
     myplay(){
       if (!this.isPlay){
