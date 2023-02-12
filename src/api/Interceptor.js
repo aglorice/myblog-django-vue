@@ -6,7 +6,7 @@ import variable from "@/assets/js/variable";
 
 const http=  axios.create({
     baseURL:variable.base_url,
-    withCredentials:true , //  #允许跨域携带cookie信息，必须加上
+    withCredentials:true ,
 })
 
 //拦截器  -请求拦截

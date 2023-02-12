@@ -149,8 +149,6 @@ export default {
           this.$store.dispatch('putpagecount',res['count'])
           // 关闭loading
           this.isRenderStart = true
-
-
         }
       }).catch((err) => {
         this.isRenderStart = true
@@ -160,13 +158,8 @@ export default {
             duration: 1500
           });
       })
-
     },
-
-
-
 }
-
 }
 </script>
 
