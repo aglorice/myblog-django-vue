@@ -5,11 +5,8 @@
           controls
           @ended="musicEnd"
           ref="myaudio"
-
           style="display:none;">
-    <source ref="test" id="test" :src=
-        "currentMusic.url"
-            type="audio/mp3">
+    您的浏览器不支持audio
   </audio>
   <div class="my_aplayer">
     <img id="cover" :class="{'toggleAudioAni':true,'pause':!isPlay}" :src="currentMusic.cover" alt="">
@@ -42,7 +39,6 @@ export default {
   },
   mounted() {
       this.getmusic()
-      this.$refs.test.play()
   },
   methods: {
     getmusic(){
@@ -63,7 +59,7 @@ export default {
     },
     prev(){
       this.currentMusic = this.audio[this.current - 1 === -1?this.current =this.allMusic - 1:--this.current]
-      this.$refs.myaudio.oncanplay = ()=>{
+      this.$refs.myaudio.oncanplay =()=>{
         if (this.isPlay){
           this.$refs.myaudio.play();
         }
@@ -76,26 +72,11 @@ export default {
       // 这里我们可以选择捕捉这个错误，因为play()方法会有返回值
       // DOMException: The play() request was interrupted by a new load request.
       // 如果使用source需要手动load
-      this.$refs.myaudio.oncanplay = ()=>{
+      this.$refs.myaudio.oncanplay=()=>{
         if (this.isPlay){
           this.$refs.myaudio.play()
         }
       }
-      // let playPromise = this.$refs.myaudio.play();
-      //
-      // if (playPromise !== undefined) {
-      //   playPromise.then(() => {
-      //     this.$refs.myaudio.load();
-      //     if(this.isPlay === true){
-      //       this.$refs.myaudio.play();
-      //       this.ispause = false
-      //     }
-      //   }).catch(() => {
-      //     debugger
-      //     console.log('1234234')
-      //         this.next()
-      //   });
-      // }
     },
     myplay(){
       if (!this.isPlay){
@@ -158,6 +139,13 @@ export default {
   width: 50vw;
   @include font_color("font_color1");
   overflow: hidden;
+  h5 {
+    display:-webkit-box;
+    overflow: hidden; /*超出隐藏*/
+    text-overflow: ellipsis;/*隐藏后添加省略号*/
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:1; //想显示多少行
+  }
 }
 .music_options {
   width: 50vw;
