@@ -8,7 +8,7 @@
     <h1 >追番列表</h1>
     <el-skeleton class="loading" v-show="loading" :rows="6" animated :throttle="500" />
     <div class="fans row">
-    <el-tabs v-show="!loading" v-model="activeName" @tab-click="handleClick">
+    <el-tabs v-show="!loading" v-model="activeName" >
       <el-tab-pane v-for="(labelName,index) in optionsName " :label="labelName" :name="labelName" :key="index">
         <div class="fans-item-pane row">
           <el-card class="fans-item box-card container-body-card col-xs-6  col-md-4 col-lg-3"
@@ -91,9 +91,6 @@ export default {
 
     },
     // 处理标签页移动
-    handleClick(tab, event) {
-      console.log(tab.index, event);
-    },
     getFans(){
       let param = {
         vmid:1705222226,
