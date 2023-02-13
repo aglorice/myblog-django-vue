@@ -67,11 +67,6 @@ export default {
     },
     next(){
       this.currentMusic = this.audio[this.current+1 === this.allMusic?this.current = 0:++this.current]
-      // 在没有使用source的情况切换音频是不需要使用load来加载音频的，当只把audio中的src的资源切换后audio会自动进行加载
-      // 如果你在这里直接调用play()方法的话，那样将会发生错误，很大概率会出现音频还会处于播放状态下就开始播放了，这显然是错误的
-      // 这里我们可以选择捕捉这个错误，因为play()方法会有返回值
-      // DOMException: The play() request was interrupted by a new load request.
-      // 如果使用source需要手动load
       this.$refs.myaudio.oncanplay=()=>{
         if (this.isPlay){
           this.$refs.myaudio.play()
