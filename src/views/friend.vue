@@ -238,8 +238,6 @@ export default {
             duration: 1500
           });
         }
-
-
       })
 
     },
