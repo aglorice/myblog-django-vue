@@ -191,5 +191,6 @@ export default {
       margin: 0 2px 0 2px;
     }
   }
+  margin-bottom: 0.5em;
 }
 </style>
