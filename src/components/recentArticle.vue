@@ -42,7 +42,7 @@ export default {
       }
     },
     drawArticle(){
-      let myChart = this.$echarts.init(document.getElementById("article_chart"));
+      this.myChart = this.$echarts.init(document.getElementById("article_chart"));
       let option = {
         title: {
           text: '最近的文章篇数',
@@ -75,12 +75,17 @@ export default {
         ]
       };
       // 使用刚指定的配置项和数据显示图表。
-      myChart.setOption(option);
+      this.myChart.setOption(option);
       // 监听页面变化重绘
       window.addEventListener('resize', () => {
-        myChart.resize()
+        this.myChart.resize()
       })
     }
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', () => {
+      this.myChart.resize()
+    })
   }
 }
 </script>

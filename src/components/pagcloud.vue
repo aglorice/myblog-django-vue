@@ -57,7 +57,7 @@ export default {
     },
 
     initChart(_this) {
-      var myChart = echarts.init(document.getElementById('wordCloudPag'));
+      this.myChart = echarts.init(document.getElementById('wordCloudPag'));
       const option = {
         title: {
           text: '',
@@ -104,16 +104,21 @@ export default {
           }
         ]
       };
-      myChart.setOption(option);
+      this.myChart.setOption(option);
       // 点击某个字
-      myChart.on('click', function (params) {
+      this.myChart.on('click', function (params) {
         _this.$router.push(`/article/pag/${params.name}`)
       });
       window.addEventListener('resize', () => {
-        myChart.resize()
+        this.myChart.resize()
       })
     }
 
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', () => {
+      this.myChart.resize()
+    })
   }
 
 }

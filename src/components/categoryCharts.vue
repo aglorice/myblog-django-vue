@@ -47,7 +47,7 @@ export default {
     },
     drawChartCategory() {
       // 基于准备好的dom，初始化echarts实例  这个和上面的main对应
-      let myChart = this.$echarts.init(document.getElementById("category_chart"));
+      this.myChart = this.$echarts.init(document.getElementById("category_chart"));
       // 指定图表的配置项和数据
       let option = {
         title: {
@@ -93,11 +93,16 @@ export default {
         ]
       };
       // 使用刚指定的配置项和数据显示图表。
-      myChart.setOption(option);
+      this.myChart.setOption(option);
       window.addEventListener('resize', () => {
-        myChart.resize()
+        this.myChart.resize()
       })
     },
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', () => {
+      this.myChart.resize()
+    })
   }
 }
 </script>
