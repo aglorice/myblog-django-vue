@@ -3,7 +3,7 @@
     <div v-loading="loading" v-if="loading" class="github_loading">
     </div>
     <div v-if="isRender" class="github_charts">
-      <img  class="github_charts_img" :src="github_img" alt="Github chart" />
+      <img  class="github_charts_img" v-lazy="github_img" alt="Github chart" />
       <p>数据来源<a :href="github_url">@{{this.user}}</a></p>
       <div class="github_charts_date">
         <div class="github_charts_date_item">
